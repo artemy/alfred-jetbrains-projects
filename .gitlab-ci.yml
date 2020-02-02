@@ -1,4 +1,4 @@
-image: python:2.7-buster
+image: alpine:3.11
 
 stages:
   - package
@@ -9,4 +9,4 @@ Package:
     paths:
       - "*.alfredworkflow"
   script:
-    - make
+    - apk add make zip
