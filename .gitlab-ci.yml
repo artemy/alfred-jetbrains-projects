@@ -10,3 +10,4 @@ Package:
       - "*.alfredworkflow"
   script:
     - apk add make zip
+    - make
