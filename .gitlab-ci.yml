@@ -1,0 +1,12 @@
+image: python:2.7-buster
+
+stages:
+  - package
+
+Package:
+  stage: package
+  artifacts:
+    paths:
+      - *.alfredworkflow
+  script:
+    - make
