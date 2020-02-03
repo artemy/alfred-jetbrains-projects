@@ -1,0 +1,27 @@
+{
+  "idea": {
+    "name": "IntelliJ IDEA",
+    "folder-name": "IntelliJIdea",
+    "xml-name": "recentProjects"
+  },
+  "clion": {
+    "name": "CLion",
+    "folder-name": "CLion",
+    "xml-name": "recentProjectDirectories"
+  },
+  "webstorm": {
+    "name": "WebStorm",
+    "folder-name": "WebStorm",
+    "xml-name": "recentProjectDirectories"
+  },
+  "goland": {
+    "name": "GoLand",
+    "folder-name": "GoLand",
+    "xml-name": "recentProjectDirectories"
+  },
+  "pycharm": {
+    "name": "PyCharm",
+    "folder-name": "PyCharm",
+    "xml-name": "recentProjectDirectories"
+  }
+}

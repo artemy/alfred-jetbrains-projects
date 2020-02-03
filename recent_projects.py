@@ -5,10 +5,6 @@ import os
 import sys
 from xml.etree import ElementTree
 
-RECENT_PROJECT_DIRECTORIES_XML = 'recentProjectDirectories.xml'
-
-RECENT_PROJECTS_FILENAME = {'Idea': 'recentProjects.xml'}
-
 
 class AlfredItem:
     def __init__(self, title, arg, type="file"):
@@ -29,34 +25,42 @@ class CustomEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-def recent_projects_filename(app):
-    return '/options/{0}'.format(RECENT_PROJECTS_FILENAME.get(app, RECENT_PROJECT_DIRECTORIES_XML))
-
-
 def create_json(targets):
     alfred = AlfredOutput(items=[AlfredItem(arg=target, title=target) for target in targets])
     print CustomEncoder().encode(alfred)
 
 
-def find_recent_files_xml():
+def read_app_data(appname):
     try:
-        app = sys.argv[1]
-        preferences_path = os.path.expanduser("~/Library/Preferences/")
-        most_recent_preferences = max([x for x in next(os.walk(preferences_path))[1] if app in x])
-        return preferences_path + most_recent_preferences + recent_projects_filename(app)
-    except IndexError:
-        print "no app specified, exiting"
-        exit(1)
+        with open('products.json', 'r') as outfile:
+            data = json.load(outfile)
+            return data[appname]
+    except IOError:
+        print "can't open file"
+    except KeyError:
+        print "App '{}' is not found in the products.json".format(appname)
+    exit(1)
+
+
+def find_recent_files_xml(application):
+    preferences_path = os.path.expanduser("~/Library/Preferences/")
+    most_recent_preferences = max(
+        [x for x in next(os.walk(preferences_path))[1] if application['folder-name'] in x])
+    return '{}{}/options/{}.xml'.format(preferences_path, most_recent_preferences, application['xml-name'])
 
 
 def main():
-    most_recent_projects_file = find_recent_files_xml()
+    try:
+        application = read_app_data(sys.argv[1])
+        most_recent_projects_file = find_recent_files_xml(application)
 
-    projects = read_projects(most_recent_projects_file)
+        projects = read_projects(most_recent_projects_file)
+        projects = filter_projects(projects)
 
-    projects = filter_projects(projects)
-
-    return create_json(projects)
+        create_json(projects)
+    except IndexError:
+        print "no app specified, exiting"
+        exit(1)
 
 
 def read_projects(most_recent_projects_file):
