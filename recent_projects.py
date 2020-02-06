@@ -7,8 +7,9 @@ from xml.etree import ElementTree
 
 
 class AlfredItem:
-    def __init__(self, title, arg, type="file"):
+    def __init__(self, title, subtitle, arg, type="file"):
         self.title = title
+        self.subtitle = subtitle
         self.arg = arg
         self.type = type
 
@@ -26,19 +27,19 @@ class CustomEncoder(json.JSONEncoder):
 
 
 def create_json(targets):
-    alfred = AlfredOutput(items=[AlfredItem(arg=target, title=target) for target in targets])
+    alfred = AlfredOutput(items=[AlfredItem(title=target.split('/')[-1], subtitle=target, arg=target) for target in targets])
     print CustomEncoder().encode(alfred)
 
 
-def read_app_data(appname):
+def read_app_data(app):
     try:
         with open('products.json', 'r') as outfile:
             data = json.load(outfile)
-            return data[appname]
+            return data[app]
     except IOError:
         print "can't open file"
     except KeyError:
-        print "App '{}' is not found in the products.json".format(appname)
+        print "App '{}' is not found in the products.json".format(app)
     exit(1)
 
 
