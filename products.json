@@ -1,27 +1,32 @@
 {
-  "idea": {
-    "name": "IntelliJ IDEA",
-    "folder-name": "IntelliJIdea",
-    "xml-name": "recentProjects"
-  },
-  "clion": {
-    "name": "CLion",
-    "folder-name": "CLion",
+  "appcode": {
+    "folder-name": "AppCode",
+    "name": "AppCode",
     "xml-name": "recentProjectDirectories"
   },
-  "webstorm": {
-    "name": "WebStorm",
-    "folder-name": "WebStorm",
+  "clion": {
+    "folder-name": "CLion",
+    "name": "CLion",
     "xml-name": "recentProjectDirectories"
   },
   "goland": {
-    "name": "GoLand",
     "folder-name": "GoLand",
+    "name": "GoLand",
     "xml-name": "recentProjectDirectories"
   },
+  "idea": {
+    "folder-name": "IntelliJIdea",
+    "name": "IntelliJ IDEA",
+    "xml-name": "recentProjects"
+  },
   "pycharm": {
-    "name": "PyCharm",
     "folder-name": "PyCharm",
+    "name": "PyCharm",
+    "xml-name": "recentProjectDirectories"
+  },
+  "webstorm": {
+    "folder-name": "WebStorm",
+    "name": "WebStorm",
     "xml-name": "recentProjectDirectories"
   }
 }

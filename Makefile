@@ -1,14 +1,16 @@
-INTELLIJ_NAME='IntelliJ\ IDEA'
-GOLAND_NAME='GoLand'
-WEBSTORM_NAME='WebStorm'
-CLION_NAME='CLion'
-PYCHARM_NAME='PyCharm'
-INTELLIJ_KEYWORD='idea'
-GOLAND_KEYWORD='goland'
-WEBSTORM_KEYWORD='webstorm'
+APPCODE_KEYWORD='appcode'
+APPCODE_NAME='AppCode'
 CLION_KEYWORD='clion'
+CLION_NAME='CLion'
+GOLAND_KEYWORD='goland'
+GOLAND_NAME='GoLand'
+INTELLIJ_KEYWORD='idea'
+INTELLIJ_NAME='IntelliJ\ IDEA'
 PYCHARM_KEYWORD='pycharm'
-APPS=INTELLIJ GOLAND CLION WEBSTORM PYCHARM
+PYCHARM_NAME='PyCharm'
+WEBSTORM_KEYWORD='webstorm'
+WEBSTORM_NAME='WebStorm'
+APPS=APPCODE CLION GOLAND INTELLIJ PYCHARM WEBSTORM
 
 .PHONY: clean build
 
@@ -21,6 +23,7 @@ build: $(APPS)
 
 $(APPS):%:
 	mkdir -p out/$($@_KEYWORD)
+	cp icons/$($@_KEYWORD).png ./out/$($@_KEYWORD)/icon.png
+	cp icons/$($@_KEYWORD).png ./out/$($@_KEYWORD)/36E4312B-0CAB-4AE7-A8B6-E30EAF07B766.png
 	sed -e 's/%APPNAME%/$($@_NAME)/g;s/%KEYWORD%/$($@_KEYWORD)/g' alfred/info.plist > out/$($@_KEYWORD)/info.plist
-	zip -j -r $($@_KEYWORD).alfredworkflow out/$($@_KEYWORD)/info.plist recent_projects.py products.json
-
+	zip -j -r $($@_KEYWORD).alfredworkflow out/$($@_KEYWORD)/* recent_projects.py products.json
