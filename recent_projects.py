@@ -72,12 +72,28 @@ def read_projects(most_recent_projects_file):
     return targets
 
 
+def smart_filter(entry, query):
+    previous_was_break = False
+    abbreviation = entry[1][0]
+    for char in entry[1][1: len(entry[1]): 1]:
+        if char == "_" or char == "-":
+            previous_was_break = True
+        else:
+            if previous_was_break:
+                abbreviation += char
+                previous_was_break = False
+    return query in entry[0] or query in abbreviation
+
+
 def filter_projects(targets):
     try:
-        query = sys.argv[2]
+        query = sys.argv[2].strip()
         if len(query) < 1:
             raise IndexError
-        return [t for t in targets if query in t]
+        targets = map(lambda t: (t, t.split('/')[-1]), targets)
+        results = filter(lambda t: smart_filter(t, query), targets)
+        results.sort(key=lambda t: (query in t[1]), reverse=True)
+        return map(lambda t: t[0], results)
     except IndexError:
         return targets
 
