@@ -5,6 +5,8 @@ import os
 import sys
 from xml.etree import ElementTree
 
+BREAK_CHARACTERS = ["_", "-"]
+
 
 class AlfredItem:
     def __init__(self, title, subtitle, arg, type="file"):
@@ -19,6 +21,35 @@ class AlfredOutput:
         self.items = items
 
 
+class Project:
+    def __init__(self, path):
+        self.path = path
+        self.name = path.split('/')[-1]
+        self.abbreviation = self.abbreviate()
+
+    def abbreviate(self):
+        previous_was_break = False
+        abbreviation = self.name[0]
+        for char in self.name[1: len(self.name)]:
+            if char in BREAK_CHARACTERS:
+                previous_was_break = True
+            else:
+                if previous_was_break:
+                    abbreviation += char
+                    previous_was_break = False
+        return abbreviation
+
+    def matches_query(self, query):
+        return query in self.path or query in self.abbreviation
+
+    def sort_on_match_type(self, query):
+        if query == self.abbreviation:
+            return 0
+        elif query in self.name:
+            return 1
+        return 2
+
+
 class CustomEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, AlfredItem) | isinstance(obj, AlfredOutput):
@@ -27,7 +58,8 @@ class CustomEncoder(json.JSONEncoder):
 
 
 def create_json(targets):
-    alfred = AlfredOutput(items=[AlfredItem(title=target.split('/')[-1], subtitle=target, arg=target) for target in targets])
+    alfred = AlfredOutput(items=
+                          [AlfredItem(title=target.split('/')[-1], subtitle=target, arg=target) for target in targets])
     print CustomEncoder().encode(alfred)
 
 
@@ -70,36 +102,6 @@ def read_projects(most_recent_projects_file):
     objects = tree.findall(xpath)
     targets = [o.attrib['value'].replace('$USER_HOME$', "~") for o in objects]
     return targets
-
-
-class Project:
-    def __init__(self, path):
-        self.path = path
-        self.name = path.split('/')[-1]
-        self.abbreviation = self.abbreviate()
-
-    def abbreviate(self):
-        previous_was_break = False
-        name = self.name
-        abbreviation = name[0]
-        for char in name[1: len(name): 1]:
-            if char == "_" or char == "-":
-                previous_was_break = True
-            else:
-                if previous_was_break:
-                    abbreviation += char
-                    previous_was_break = False
-        return abbreviation
-
-    def matches_query(self, query):
-        return query in self.path or query in self.abbreviation
-
-    def sort_on_match_type(self, query):
-        if query == self.abbreviation:
-            return 0
-        elif query in self.name:
-            return 1
-        return 2
 
 
 def filter_projects(targets):
