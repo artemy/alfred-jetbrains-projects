@@ -72,17 +72,34 @@ def read_projects(most_recent_projects_file):
     return targets
 
 
-def smart_filter(entry, query):
-    previous_was_break = False
-    abbreviation = entry[1][0]
-    for char in entry[1][1: len(entry[1]): 1]:
-        if char == "_" or char == "-":
-            previous_was_break = True
-        else:
-            if previous_was_break:
-                abbreviation += char
-                previous_was_break = False
-    return query in entry[0] or query in abbreviation
+class Project:
+    def __init__(self, path):
+        self.path = path
+        self.name = path.split('/')[-1]
+        self.abbreviation = self.abbreviate()
+
+    def abbreviate(self):
+        previous_was_break = False
+        name = self.name
+        abbreviation = name[0]
+        for char in name[1: len(name): 1]:
+            if char == "_" or char == "-":
+                previous_was_break = True
+            else:
+                if previous_was_break:
+                    abbreviation += char
+                    previous_was_break = False
+        return abbreviation
+
+    def matches_query(self, query):
+        return query in self.path or query in self.abbreviation
+
+    def sort_on_match_type(self, query):
+        if query == self.abbreviation:
+            return 0
+        elif query in self.name:
+            return 1
+        return 2
 
 
 def filter_projects(targets):
@@ -90,10 +107,10 @@ def filter_projects(targets):
         query = sys.argv[2].strip()
         if len(query) < 1:
             raise IndexError
-        targets = map(lambda t: (t, t.split('/')[-1]), targets)
-        results = filter(lambda t: smart_filter(t, query), targets)
-        results.sort(key=lambda t: (query in t[1]), reverse=True)
-        return map(lambda t: t[0], results)
+        projects = map(Project, targets)
+        results = filter(lambda p: p.matches_query(query), projects)
+        results.sort(key=lambda p: p.sort_on_match_type(query))
+        return map(lambda p: p.path, results)
     except IndexError:
         return targets
 
