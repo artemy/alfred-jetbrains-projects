@@ -40,7 +40,7 @@ class Project:
         return abbreviation
 
     def matches_query(self, query):
-        return query in self.path or query in self.abbreviation
+        return query in self.path.lower() or query in self.abbreviation.lower()
 
     def sort_on_match_type(self, query):
         if query == self.abbreviation:
@@ -106,7 +106,7 @@ def read_projects(most_recent_projects_file):
 
 def filter_projects(targets):
     try:
-        query = sys.argv[2].strip()
+        query = sys.argv[2].strip().lower()
         if len(query) < 1:
             raise IndexError
         projects = map(Project, targets)
