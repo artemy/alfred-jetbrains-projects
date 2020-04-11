@@ -23,8 +23,13 @@ class AlfredOutput:
 
 class Project:
     def __init__(self, path):
-        self.path = path
-        self.name = path.split('/')[-1]
+        self.path = os.path.expanduser(path)
+        name_file = self.path + "/.idea/.name"
+
+        if os.path.isfile(name_file):
+            self.name = open(name_file).read()
+        else:
+            self.name = path.split('/')[-1]
         self.abbreviation = self.abbreviate()
 
     def abbreviate(self):
@@ -40,7 +45,7 @@ class Project:
         return abbreviation
 
     def matches_query(self, query):
-        return query in self.path.lower() or query in self.abbreviation.lower()
+        return query in self.path.lower() or query in self.abbreviation.lower() or query in self.name.lower()
 
     def sort_on_match_type(self, query):
         if query == self.abbreviation:
@@ -57,9 +62,9 @@ class CustomEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 
-def create_json(targets):
+def create_json(projects):
     alfred = AlfredOutput(items=
-                          [AlfredItem(title=target.split('/')[-1], subtitle=target, arg=target) for target in targets])
+                      [AlfredItem(title=project.name, subtitle=project.path, arg=project.path) for project in projects])
     print CustomEncoder().encode(alfred)
 
 
@@ -112,7 +117,7 @@ def filter_projects(targets):
         projects = map(Project, targets)
         results = filter(lambda p: p.matches_query(query), projects)
         results.sort(key=lambda p: p.sort_on_match_type(query))
-        return map(lambda p: p.path, results)
+        return results
     except IndexError:
         return targets
 
