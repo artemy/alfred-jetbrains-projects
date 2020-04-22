@@ -64,7 +64,8 @@ class CustomEncoder(json.JSONEncoder):
 
 def create_json(projects):
     alfred = AlfredOutput(items=
-                      [AlfredItem(title=project.name, subtitle=project.path, arg=project.path) for project in projects])
+                          [AlfredItem(title=project.name, subtitle=project.path, arg=project.path) for project in
+                           projects])
     print CustomEncoder().encode(alfred)
 
 
@@ -81,24 +82,10 @@ def read_app_data(app):
 
 
 def find_recent_files_xml(application):
-    preferences_path = os.path.expanduser("~/Library/Preferences/")
+    preferences_path = os.path.expanduser("~/Library/Application Support/JetBrains/")
     most_recent_preferences = max(
         [x for x in next(os.walk(preferences_path))[1] if application['folder-name'] in x])
-    return '{}{}/options/{}.xml'.format(preferences_path, most_recent_preferences, application['xml-name'])
-
-
-def main():
-    try:
-        application = read_app_data(sys.argv[1])
-        most_recent_projects_file = find_recent_files_xml(application)
-
-        projects = read_projects(most_recent_projects_file)
-        projects = filter_projects(projects)
-
-        create_json(projects)
-    except IndexError:
-        print "no app specified, exiting"
-        exit(1)
+    return '{}{}/options/{}.xml'.format(preferences_path, most_recent_preferences, 'recentProjects')
 
 
 def read_projects(most_recent_projects_file):
@@ -119,7 +106,24 @@ def filter_projects(targets):
         results.sort(key=lambda p: p.sort_on_match_type(query))
         return results
     except IndexError:
-        return targets
+        return map(Project, targets)
+
+
+def main():
+    try:
+        application = read_app_data(sys.argv[1])
+        most_recent_projects_file = find_recent_files_xml(application)
+
+        projects = read_projects(most_recent_projects_file)
+        projects = filter_projects(projects)
+
+        create_json(projects)
+    except IndexError:
+        print "no app specified, exiting"
+        exit(1)
+    except ValueError:
+        print "can't find any preferences for", sys.argv[1]
+        exit(1)
 
 
 if __name__ == "__main__":

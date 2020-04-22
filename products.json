@@ -1,32 +1,26 @@
 {
   "appcode": {
     "folder-name": "AppCode",
-    "name": "AppCode",
-    "xml-name": "recentProjectDirectories"
+    "name": "AppCode"
   },
   "clion": {
     "folder-name": "CLion",
-    "name": "CLion",
-    "xml-name": "recentProjectDirectories"
+    "name": "CLion"
   },
   "goland": {
     "folder-name": "GoLand",
-    "name": "GoLand",
-    "xml-name": "recentProjectDirectories"
+    "name": "GoLand"
   },
   "idea": {
     "folder-name": "IntelliJIdea",
-    "name": "IntelliJ IDEA",
-    "xml-name": "recentProjects"
+    "name": "IntelliJ IDEA"
   },
   "pycharm": {
     "folder-name": "PyCharm",
-    "name": "PyCharm",
-    "xml-name": "recentProjectDirectories"
+    "name": "PyCharm"
   },
   "webstorm": {
     "folder-name": "WebStorm",
-    "name": "WebStorm",
-    "xml-name": "recentProjectDirectories"
+    "name": "WebStorm"
   }
 }
