@@ -12,7 +12,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>8FCE0F78-7988-4A36-A2F8-194902CE15FF</string>
+				<string>7693E969-8EF4-496C-85C3-9C62B93D717F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -84,15 +84,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>openwith</key>
-				<string>%APPNAME%.app</string>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>open -na "%APPNAME%.app" --args $@</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.openfile</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>8FCE0F78-7988-4A36-A2F8-194902CE15FF</string>
+			<string>7693E969-8EF4-496C-85C3-9C62B93D717F</string>
 			<key>version</key>
-			<integer>3</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -106,10 +116,10 @@
 			<key>ypos</key>
 			<integer>190</integer>
 		</dict>
-		<key>8FCE0F78-7988-4A36-A2F8-194902CE15FF</key>
+		<key>7693E969-8EF4-496C-85C3-9C62B93D717F</key>
 		<dict>
 			<key>xpos</key>
-			<integer>495</integer>
+			<integer>490</integer>
 			<key>ypos</key>
 			<integer>190</integer>
 		</dict>
@@ -117,7 +127,7 @@
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>0.1</string>
+	<string>0.2</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>
