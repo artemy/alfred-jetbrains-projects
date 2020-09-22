@@ -21,6 +21,16 @@ class AlfredOutput:
         self.items = items
 
 
+class CustomEncoder(json.JSONEncoder):
+    def default(self, obj):
+        return obj.__dict__
+
+
+def create_json(projects):
+    return CustomEncoder().encode(
+        AlfredOutput([AlfredItem(project.name, project.path, project.path) for project in projects]))
+
+
 class Project:
     def __init__(self, path):
         self.path = os.path.expanduser(path)
@@ -31,6 +41,11 @@ class Project:
         else:
             self.name = path.split('/')[-1]
         self.abbreviation = self.abbreviate()
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.name == other.name and self.path == other.path and self.abbreviation == other.abbreviation
+        return False
 
     def abbreviate(self):
         previous_was_break = False
@@ -55,76 +70,67 @@ class Project:
         return 2
 
 
-class CustomEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, AlfredItem) | isinstance(obj, AlfredOutput):
-            return obj.__dict__
-        return json.JSONEncoder.default(self, obj)
-
-
-def create_json(projects):
-    alfred = AlfredOutput(items=
-                          [AlfredItem(title=project.name, subtitle=project.path, arg=project.path) for project in
-                           projects])
-    print CustomEncoder().encode(alfred)
-
-
-def read_app_data(app):
+def find_app_data(app):
     try:
         with open('products.json', 'r') as outfile:
             data = json.load(outfile)
             return data[app]
     except IOError:
-        print "can't open file"
+        print "Can't open products file"
     except KeyError:
         print "App '{}' is not found in the products.json".format(app)
     exit(1)
 
 
-def find_recent_files_xml(application):
+def find_recentprojects_file(application):
     preferences_path = os.path.expanduser("~/Library/Application Support/JetBrains/")
-    most_recent_preferences = max(
-        [x for x in next(os.walk(preferences_path))[1] if application['folder-name'] in x])
+    most_recent_preferences = max(find_preferences_folders(application))
     return '{}{}/options/{}.xml'.format(preferences_path, most_recent_preferences, 'recentProjects')
 
 
-def read_projects(most_recent_projects_file):
+def find_preferences_folders(application):
+    preferences_path = os.path.expanduser("~/Library/Application Support/JetBrains/")
+    return [folder_name for folder_name in next(os.walk(preferences_path))[1] if
+            application["folder-name"] in folder_name and not should_ignore_folder(folder_name)]
+
+
+def should_ignore_folder(folder_name):
+    return "backup" in folder_name
+
+
+def read_projects_from_file(most_recent_projects_file):
     tree = ElementTree.parse(most_recent_projects_file)
-    xpath = ".//option[@name='recentPaths']/list/option"
-    objects = tree.findall(xpath)
-    targets = [o.attrib['value'].replace('$USER_HOME$', "~") for o in objects]
-    return targets
+    projects = [t.attrib['value'].replace('$USER_HOME$', "~") for t
+                in tree.findall(".//option[@name='recentPaths']/list/option")]
+    return projects
 
 
-def filter_projects(targets):
+def filter_and_sort_projects(query, projects):
+    if len(query) < 1:
+        return projects
+    results = filter(lambda p: p.matches_query(query), projects)
+    results.sort(key=lambda p: p.sort_on_match_type(query))
+    return results
+
+
+def main():  # pragma: nocover
     try:
+        app_data = find_app_data(sys.argv[1])
+        recent_projects_file = find_recentprojects_file(app_data)
+
         query = sys.argv[2].strip().lower()
-        if len(query) < 1:
-            raise IndexError
-        projects = map(Project, targets)
-        results = filter(lambda p: p.matches_query(query), projects)
-        results.sort(key=lambda p: p.sort_on_match_type(query))
-        return results
+
+        projects = map(Project, read_projects_from_file(recent_projects_file))
+        projects = filter_and_sort_projects(query, projects)
+
+        print create_json(projects)
     except IndexError:
-        return map(Project, targets)
-
-
-def main():
-    try:
-        application = read_app_data(sys.argv[1])
-        most_recent_projects_file = find_recent_files_xml(application)
-
-        projects = read_projects(most_recent_projects_file)
-        projects = filter_projects(projects)
-
-        create_json(projects)
-    except IndexError:
-        print "no app specified, exiting"
+        print "No app specified, exiting"
         exit(1)
     except ValueError:
-        print "can't find any preferences for", sys.argv[1]
+        print "Can't find any preferences for", sys.argv[1]
         exit(1)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: nocover
     main()
