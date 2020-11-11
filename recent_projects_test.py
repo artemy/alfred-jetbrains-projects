@@ -37,9 +37,9 @@ class Unittests(unittest.TestCase):
                    '"title": "custom_project_name"}]}'
         self.assertEqual(expected, create_json([Project("~/Documents/spring-petclinic")]))
 
-    @mock.patch("__builtin__.open", mock.mock_open(read_data='{"clion": {"folder-name": "CLion","name": "CLion"}}'))
+    @mock.patch("__builtin__.open", mock.mock_open(read_data='{"clion": {"folder-name": "CLion"}}'))
     def test_read_app_data(self):
-        self.assertEqual(find_app_data("clion"), {"folder-name": 'CLion', "name": 'CLion'})
+        self.assertEqual(find_app_data("clion"), {"folder-name": 'CLion'})
 
         with self.assertRaises(SystemExit) as exitcode:
             find_app_data("rider")
@@ -65,8 +65,23 @@ class Unittests(unittest.TestCase):
               'GoLand2020.2'], []),
         ])
         """Happy Flow"""
-        self.assertEqual(find_recentprojects_file({"name": "IntelliJ IDEA", "folder-name": "IntelliJIdea"}),
+        self.assertEqual(find_recentprojects_file({"folder-name": "IntelliJIdea"}),
                          self.recentProjectsPath)
+
+    @mock.patch("os.path.expanduser")
+    @mock.patch("os.walk")
+    def test_find_recent_files_xml_android_studio(self, mock_walk, expand_user):
+        expand_user.return_value = '/Users/JohnSnow/Library/Application Support/Google/'
+        mock_walk.return_value = iter([
+            ('/Path',
+             ['AndroidStudio4.0',
+              'AndroidStudio4.1',
+              'Chrome'], []),
+        ])
+        """Happy Flow"""
+        self.assertEqual(
+            find_recentprojects_file({"folder-name": "AndroidStudio"}),
+            '/Users/JohnSnow/Library/Application Support/Google/AndroidStudio4.1/options/recentProjects.xml')
 
     @mock.patch("__builtin__.open", mock.mock_open(
         read_data='<application>'

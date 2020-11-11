@@ -83,13 +83,17 @@ def find_app_data(app):
 
 
 def find_recentprojects_file(application):
-    preferences_path = os.path.expanduser("~/Library/Application Support/JetBrains/")
-    most_recent_preferences = max(find_preferences_folders(application))
-    return '{}{}/options/{}.xml'.format(preferences_path, most_recent_preferences, 'recentProjects')
+    preferences_path = os.path.expanduser(preferences_path_or_default(application))
+    most_recent_preferences = max(find_preferences_folders(preferences_path, application))
+    return "{}{}/options/{}.xml".format(preferences_path, most_recent_preferences, "recentProjects")
 
 
-def find_preferences_folders(application):
-    preferences_path = os.path.expanduser("~/Library/Application Support/JetBrains/")
+def preferences_path_or_default(application):
+    return application["preferences-path"] if "preferences-path" in application \
+        else "~/Library/Application Support/JetBrains/"
+
+
+def find_preferences_folders(preferences_path, application):
     return [folder_name for folder_name in next(os.walk(preferences_path))[1] if
             application["folder-name"] in folder_name and not should_ignore_folder(folder_name)]
 

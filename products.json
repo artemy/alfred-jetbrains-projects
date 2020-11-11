@@ -1,26 +1,24 @@
 {
-  "appcode": {
-    "folder-name": "AppCode",
-    "name": "AppCode"
-  },
-  "clion": {
-    "folder-name": "CLion",
-    "name": "CLion"
-  },
-  "goland": {
-    "folder-name": "GoLand",
-    "name": "GoLand"
-  },
-  "idea": {
-    "folder-name": "IntelliJIdea",
-    "name": "IntelliJ IDEA"
-  },
-  "pycharm": {
-    "folder-name": "PyCharm",
-    "name": "PyCharm"
-  },
-  "webstorm": {
-    "folder-name": "WebStorm",
-    "name": "WebStorm"
-  }
+    "androidstudio": {
+        "folder-name": "AndroidStudio",
+        "preferences-path": "~/Library/Application Support/Google/"
+    },
+    "appcode": {
+        "folder-name": "AppCode"
+    },
+    "clion": {
+        "folder-name": "CLion"
+    },
+    "goland": {
+        "folder-name": "GoLand"
+    },
+    "idea": {
+        "folder-name": "IntelliJIdea"
+    },
+    "pycharm": {
+        "folder-name": "PyCharm"
+    },
+    "webstorm": {
+        "folder-name": "WebStorm"
+    }
 }
