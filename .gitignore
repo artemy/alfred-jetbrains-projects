@@ -6,3 +6,4 @@ out
 htmlcov
 .coverage
 coverage.xml
+*.pyc
