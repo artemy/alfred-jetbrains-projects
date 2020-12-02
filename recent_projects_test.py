@@ -88,14 +88,14 @@ class Unittests(unittest.TestCase):
                   '<component name="RecentProjectsManager">'
                   '<option name="additionalInfo">'
                   '<map>'
-                  '<entry key="$USER_HOME$/Documents/spring-petclinic" />'
                   '<entry key="$USER_HOME$/Desktop/trash/My Project (42)" />'
+                  '<entry key="$USER_HOME$/Documents/spring-petclinic" />'
                   '</map>'
                   '</option>'
                   '</component>'
                   '</application>'))
     def test_read_projects(self):
-        self.assertEqual(read_projects_from_file(self.recentProjectsPath), self.example_projects_paths)
+        self.assertEqual(list(read_projects_from_file(self.recentProjectsPath)), self.example_projects_paths)
 
     def test_filter_projects(self):
         projects = map(Project, self.example_projects_paths)
