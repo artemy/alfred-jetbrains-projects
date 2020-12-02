@@ -106,7 +106,7 @@ def read_projects_from_file(most_recent_projects_file):
     tree = ElementTree.parse(most_recent_projects_file)
     projects = [t.attrib['key'].replace('$USER_HOME$', "~") for t
                 in tree.findall(".//component[@name='RecentProjectsManager']/option[@name='additionalInfo']/map/entry")]
-    return projects
+    return reversed(projects)
 
 
 def filter_and_sort_projects(query, projects):
