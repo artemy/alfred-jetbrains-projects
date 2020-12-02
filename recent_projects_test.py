@@ -86,11 +86,11 @@ class Unittests(unittest.TestCase):
     @mock.patch("__builtin__.open", mock.mock_open(
         read_data='<application>'
                   '<component name="RecentProjectsManager">'
-                  '<option name="recentPaths">'
-                  '<list>'
-                  '<option value="$USER_HOME$/Documents/spring-petclinic" />'
-                  '<option value="$USER_HOME$/Desktop/trash/My Project (42)" />'
-                  '</list>'
+                  '<option name="additionalInfo">'
+                  '<map>'
+                  '<entry key="$USER_HOME$/Documents/spring-petclinic" />'
+                  '<entry key="$USER_HOME$/Desktop/trash/My Project (42)" />'
+                  '</map>'
                   '</option>'
                   '</component>'
                   '</application>'))
