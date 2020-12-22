@@ -1,4 +1,4 @@
 # Recognized contributors
 
-* [Robin Trietsch](https://gitlab.com/trietsch)
-* [Wouter Oet](https://gitlab.com/DeviantOrbit)
+* [Robin Trietsch](https://github.com/trietsch)
+* [Wouter Oet](https://github.com/WouterOet)
