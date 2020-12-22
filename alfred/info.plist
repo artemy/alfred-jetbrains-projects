@@ -127,8 +127,8 @@
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>0.3</string>
+	<string>1.0</string>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/artemy/alfred-jetbrains-projects</string>
 </dict>
 </plist>
