@@ -68,7 +68,7 @@ coverage report -m # display coverage figures
 
 * [Python 2.7](https://docs.python.org/2.7/)
 * [GNU Make](https://www.gnu.org/software/make/manual/make.html) - Build scripting
-* [mock](http://mock.readthedocs.org/) - Testing library
+* [mock](https://mock.readthedocs.org/) - Testing library
 * [coverage.py](https://coverage.readthedocs.io/) - Code coverage measurement
 
 ## Contributing
@@ -81,5 +81,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-See [CONTRIBUTORS.md](CONTRIBUTORS.md) and [contributors](https://github.com/your/project/contributors) for the list of
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) and [contributors](https://github.com/artemy/alfred-jetbrains-projects/contributors) for the list of
 contributors.
