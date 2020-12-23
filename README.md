@@ -1,6 +1,6 @@
 # JetBrains projects for Alfred
 
-![Test & release artifacts](https://github.com/artemy/alfred-jetbrains-projects/workflows/Test%20&%20release%20artifacts/badge.svg?branch=master)
+![test & release](https://github.com/artemy/alfred-jetbrains-projects/workflows/test%20&%20release/badge.svg)
 ![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)
 
 Alfred workflow for opening your JetBrains IDEs projects
@@ -30,7 +30,7 @@ workflow.
 
 ### Installing
 
-Download `*.workflow` file for your IDE from the latest release
+Download `*.alfredworkflow` file for your IDE from the latest release
 at [Releases](https://github.com/artemy/alfred-jetbrains-projects/releases) page and open it with Alfred.
 
 ### How to Use
