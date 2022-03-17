@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import json
 import os
@@ -76,9 +76,9 @@ def find_app_data(app):
             data = json.load(outfile)
             return data[app]
     except IOError:
-        print "Can't open products file"
+        print("Can't open products file")
     except KeyError:
-        print "App '{}' is not found in the products.json".format(app)
+        print("App '{}' is not found in the products.json".format(app))
     exit(1)
 
 
@@ -112,7 +112,7 @@ def read_projects_from_file(most_recent_projects_file):
 def filter_and_sort_projects(query, projects):
     if len(query) < 1:
         return projects
-    results = filter(lambda p: p.matches_query(query), projects)
+    results = [p for p in projects if p.matches_query(query)]
     results.sort(key=lambda p: p.sort_on_match_type(query))
     return results
 
@@ -124,15 +124,15 @@ def main():  # pragma: nocover
 
         query = sys.argv[2].strip().lower()
 
-        projects = map(Project, read_projects_from_file(recent_projects_file))
+        projects = list(map(Project, read_projects_from_file(recent_projects_file)))
         projects = filter_and_sort_projects(query, projects)
 
-        print create_json(projects)
+        print(create_json(projects))
     except IndexError:
-        print "No app specified, exiting"
+        print("No app specified, exiting")
         exit(1)
     except ValueError:
-        print "Can't find any preferences for", sys.argv[1]
+        print("Can't find any preferences for", sys.argv[1])
         exit(1)
 
 
