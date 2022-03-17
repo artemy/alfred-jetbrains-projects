@@ -25,7 +25,7 @@ Support for older IDE versions is not guaranteed.
 
 ### Prerequisites
 
-Project requires Python 3.8+ to run, which is not included by default with macOS. You can install Python 3.9 using
+Project requires Python 3.8+ to run, which is not included by default with macOS. You can install Python 3 using
 this [guide](https://docs.python-guide.org/starting/install3/osx/).
 
 ### Installing
@@ -48,13 +48,13 @@ typing `map` will find `my-awesome-project`):
 Make sure to first install test dependencies:
 
 ```shell
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 To run tests, execute
 
 ```shell
-python -m recent_projects_test
+python3 -m recent_projects_test
 ```
 
 If you want to get coverage figures through `coverage` tool:
