@@ -9,15 +9,15 @@ Alfred workflow for opening your JetBrains IDEs projects
 
 ## Supported IDEs
 
-| IDE Name | Version | Keyword |
-| --- | --- | --- |
-| Android Studio | 4.1+ | androidstudio |
-| AppCode | 2020.3+ | appcode |
-| CLion | 2020.3+ | clion |
-| GoLand | 2020.3+ | goland |
-| IntelliJ IDEA | 2020.3+ | idea |
-| PyCharm | 2020.3+ | pycharm |
-| WebStorm | 2020.3+ | webstorm |
+| IDE Name       | Version | Keyword       |
+|----------------|---------|---------------|
+| Android Studio | 4.1+    | androidstudio |
+| AppCode        | 2020.3+ | appcode       |
+| CLion          | 2020.3+ | clion         |
+| GoLand         | 2020.3+ | goland        |
+| IntelliJ IDEA  | 2020.3+ | idea          |
+| PyCharm        | 2020.3+ | pycharm       |
+| WebStorm       | 2020.3+ | webstorm      |
 
 Support for older IDE versions is not guaranteed.
 
@@ -25,8 +25,8 @@ Support for older IDE versions is not guaranteed.
 
 ### Prerequisites
 
-Project uses standard Python 2.7 shipped with all modern OSX distributions. No dependencies are required for running the
-workflow.
+Project requires Python 3.8+ to run, which is not included by default with macOS. You can install Python 3.9 using
+this [guide](https://docs.python-guide.org/starting/install3/osx/).
 
 ### Installing
 
@@ -66,9 +66,8 @@ coverage report -m # display coverage figures
 
 ## Built With
 
-* [Python 2.7](https://docs.python.org/2.7/)
+* [Python 3.8](https://docs.python.org/3.8/)
 * [GNU Make](https://www.gnu.org/software/make/manual/make.html) - Build scripting
-* [mock](https://mock.readthedocs.org/) - Testing library
 * [coverage.py](https://coverage.readthedocs.io/) - Code coverage measurement
 
 ## Contributing
@@ -81,5 +80,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-See [CONTRIBUTORS.md](CONTRIBUTORS.md) and [contributors](https://github.com/artemy/alfred-jetbrains-projects/contributors) for the list of
-contributors.
+See [CONTRIBUTORS.md](CONTRIBUTORS.md)
+and [contributors](https://github.com/artemy/alfred-jetbrains-projects/contributors) for the list of contributors.
