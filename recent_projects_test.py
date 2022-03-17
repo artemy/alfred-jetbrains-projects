@@ -1,6 +1,5 @@
 import unittest
-
-import mock
+from unittest import mock
 
 from recent_projects import create_json, Project, find_app_data, find_recentprojects_file, read_projects_from_file, \
     filter_and_sort_projects
@@ -19,25 +18,25 @@ class Unittests(unittest.TestCase):
     @mock.patch('os.path.isfile')
     def test_create_json(self, mock_isfile):
         mock_isfile.return_value = False
-        expected = '{"items": [{"type": "file", ' \
-                   '"arg": "/Users/JohnSnow/Documents/spring-petclinic", ' \
+        expected = '{"items": [{"title": "spring-petclinic", ' \
                    '"subtitle": "/Users/JohnSnow/Documents/spring-petclinic", ' \
-                   '"title": "spring-petclinic"}]}'
+                   '"arg": "/Users/JohnSnow/Documents/spring-petclinic", ' \
+                   '"type": "file"}]}'
         self.assertEqual(expected, create_json([self.example_project]))
 
     @mock.patch("os.path.expanduser")
     @mock.patch('os.path.isfile')
-    @mock.patch("__builtin__.open", mock.mock_open(read_data="custom_project_name"))
+    @mock.patch("builtins.open", mock.mock_open(read_data="custom_project_name"))
     def test_create_json_from_custom_name(self, mock_isfile, mock_expand_user):
         mock_expand_user.return_value = '/Users/JohnSnow/Documents/spring-petclinic'
         mock_isfile.return_value = True
-        expected = '{"items": [{"type": "file", ' \
-                   '"arg": "/Users/JohnSnow/Documents/spring-petclinic", ' \
+        expected = '{"items": [{"title": "custom_project_name", ' \
                    '"subtitle": "/Users/JohnSnow/Documents/spring-petclinic", ' \
-                   '"title": "custom_project_name"}]}'
+                   '"arg": "/Users/JohnSnow/Documents/spring-petclinic", ' \
+                   '"type": "file"}]}'
         self.assertEqual(expected, create_json([Project("~/Documents/spring-petclinic")]))
 
-    @mock.patch("__builtin__.open", mock.mock_open(read_data='{"clion": {"folder-name": "CLion"}}'))
+    @mock.patch("builtins.open", mock.mock_open(read_data='{"clion": {"folder-name": "CLion"}}'))
     def test_read_app_data(self):
         self.assertEqual(find_app_data("clion"), {"folder-name": 'CLion'})
 
@@ -45,7 +44,7 @@ class Unittests(unittest.TestCase):
             find_app_data("rider")
         self.assertEqual(exitcode.exception.code, 1)
 
-    @mock.patch("__builtin__.open")
+    @mock.patch("builtins.open")
     def test_read_app_data_products_file_missing(self, mock_open):
         mock_open.side_effect = IOError()
         with self.assertRaises(SystemExit) as exitcode:
@@ -83,7 +82,7 @@ class Unittests(unittest.TestCase):
             find_recentprojects_file({"folder-name": "AndroidStudio"}),
             '/Users/JohnSnow/Library/Application Support/Google/AndroidStudio4.1/options/recentProjects.xml')
 
-    @mock.patch("__builtin__.open", mock.mock_open(
+    @mock.patch("builtins.open", mock.mock_open(
         read_data='<application>'
                   '<component name="RecentProjectsManager">'
                   '<option name="additionalInfo">'
@@ -98,11 +97,11 @@ class Unittests(unittest.TestCase):
         self.assertEqual(list(read_projects_from_file(self.recentProjectsPath)), self.example_projects_paths)
 
     def test_filter_projects(self):
-        projects = map(Project, self.example_projects_paths)
+        projects = list(map(Project, self.example_projects_paths))
         self.assertEqual([Project(self.example_projects_paths[0])], filter_and_sort_projects("petclinic", projects))
 
     def test_filter_projects_no_query(self):
-        projects = map(Project, self.example_projects_paths)
+        projects = list(map(Project, self.example_projects_paths))
         self.assertEqual(filter_and_sort_projects("", projects), projects)
 
     def test_project_equals(self):
