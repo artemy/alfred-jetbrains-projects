@@ -9,6 +9,9 @@
     "clion": {
         "folder-name": "CLion"
     },
+    "datagrip": {
+        "folder-name": "DataGrip"
+    },
     "goland": {
         "folder-name": "GoLand"
     },

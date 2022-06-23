@@ -14,6 +14,7 @@ Alfred workflow for opening your JetBrains IDEs projects
 | Android Studio | 4.1+    | androidstudio |
 | AppCode        | 2020.3+ | appcode       |
 | CLion          | 2020.3+ | clion         |
+| DataGrip       | 2020.3+ | datagrip      |
 | GoLand         | 2020.3+ | goland        |
 | IntelliJ IDEA  | 2020.3+ | idea          |
 | PyCharm        | 2020.3+ | pycharm       |
@@ -25,7 +26,7 @@ Support for older IDE versions is not guaranteed.
 
 ### Prerequisites
 
-Project requires Python 3.8+ to run, which is not included by default with macOS. You can install Python 3 using
+Project requires Python 3.9+ to run, which is not included by default with macOS. You can install Python 3 using
 this [guide](https://docs.python-guide.org/starting/install3/osx/).
 
 ### Installing
@@ -66,7 +67,7 @@ coverage report -m # display coverage figures
 
 ## Built With
 
-* [Python 3.8](https://docs.python.org/3.8/)
+* [Python 3.9](https://docs.python.org/3.9/)
 * [GNU Make](https://www.gnu.org/software/make/manual/make.html) - Build scripting
 * [coverage.py](https://coverage.readthedocs.io/) - Code coverage measurement
 
