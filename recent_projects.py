@@ -31,7 +31,7 @@ def create_json(projects):
         AlfredOutput([AlfredItem(project.name, project.path, project.path) for project in projects]))
 
 
-def match_fuzzy(chars, string):
+def match_partial(chars, string):
     index = 0
     for char in chars:
         if char not in string[index:]:
@@ -69,8 +69,8 @@ class Project:
         return abbreviation
 
     def matches_query(self, query):
-        splits = filter(lambda x: x.strip() != '', query)
-        return match_fuzzy(splits, self.name.lower())
+        chars = filter(lambda x: x.strip() != '', query)
+        return match_partial(chars, self.path.lower())
 
     def sort_on_match_type(self, query):
         if query == self.abbreviation:
