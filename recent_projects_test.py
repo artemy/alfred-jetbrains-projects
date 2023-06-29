@@ -123,6 +123,13 @@ class Unittests(unittest.TestCase):
         self.assertEqual(match_partial("your-fb", "your-foo-bar"), True)
         self.assertEqual(match_partial("", "your-foo-bar"), True)
 
+        self.assertEqual(match_partial("uyfb", "/home/username/your-foo-bar"), True)
+        self.assertEqual(match_partial("uyr", "/home/username/your-foo-bar"), True)
+        self.assertEqual(match_partial("uyrb", "/home/username/your-foo-bar"), True)
+        self.assertEqual(match_partial("uyour-foo-bar", "/home/username/your-foo-bar"), True)
+        self.assertEqual(match_partial("uyour-fb", "/home/username/your-foo-bar"), True)
+        self.assertEqual(match_partial("h/u/your-fb", "/home/username/your-foo-bar"), True)
+
         self.assertEqual(match_partial("not-exist", "your-foo-bar"), False)
         self.assertEqual(match_partial("yr0", "your-foo-bar"), False)
         self.assertEqual(match_partial("ybf", "your-foo-bar"), False)
