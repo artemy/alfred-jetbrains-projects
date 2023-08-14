@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build artifacts
-      run: make
+      run: python3 build.py
     - name: Create release
       uses: softprops/action-gh-release@v1
       with:

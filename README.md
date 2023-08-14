@@ -68,7 +68,6 @@ coverage report -m # display coverage figures
 ## Built With
 
 * [Python 3.9](https://docs.python.org/3.9/)
-* [GNU Make](https://www.gnu.org/software/make/manual/make.html) - Build scripting
 * [coverage.py](https://coverage.readthedocs.io/) - Code coverage measurement
 
 ## Contributing
