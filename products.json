@@ -21,6 +21,9 @@
     "pycharm": {
         "folder-name": "PyCharm"
     },
+    "rustrover": {
+        "folder-name": "RustRover"
+    },
     "webstorm": {
         "folder-name": "WebStorm"
     }

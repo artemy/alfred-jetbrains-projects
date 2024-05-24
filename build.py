@@ -8,6 +8,7 @@ APPS = [
     ['GoLand', 'goland', 'com.jetbrains.goland'],
     ['IntelliJ IDEA', 'idea', 'com.jetbrains.intellij'],
     ['PyCharm', 'pycharm', 'com.jetbrains.pycharm'],
+    ['RustRover', 'rustrover', 'com.jetbrains.rustrover'],
     ['WebStorm', 'webstorm', 'com.jetbrains.webstorm'],
 ]
 
