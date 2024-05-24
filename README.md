@@ -1,7 +1,7 @@
 # JetBrains projects for Alfred
 
 ![test & release](https://github.com/artemy/alfred-jetbrains-projects/workflows/test%20&%20release/badge.svg)
-![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)
+![MIT License](https://img.shields.io/github/license/artemy/alfred-jetbrains-projects)
 
 Alfred workflow for opening your JetBrains IDEs projects
 
