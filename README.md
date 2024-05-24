@@ -18,6 +18,7 @@ Alfred workflow for opening your JetBrains IDEs projects
 | GoLand         | 2020.3+ | goland        |
 | IntelliJ IDEA  | 2020.3+ | idea          |
 | PyCharm        | 2020.3+ | pycharm       |
+| RustRover      | 2024.1+ | rustrover     |
 | WebStorm       | 2020.3+ | webstorm      |
 
 Support for older IDE versions is not guaranteed.
