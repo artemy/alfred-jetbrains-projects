@@ -18,6 +18,9 @@
     "idea": {
         "folder-name": "IntelliJIdea"
     },
+    "phpstorm": {
+        "folder-name": "PhpStorm"
+    },
     "pycharm": {
         "folder-name": "PyCharm"
     },

@@ -17,6 +17,7 @@ Alfred workflow for opening your JetBrains IDEs projects
 | DataGrip       | 2020.3+ | datagrip      |
 | GoLand         | 2020.3+ | goland        |
 | IntelliJ IDEA  | 2020.3+ | idea          |
+| PhpStorm       | 2024.3+ | phpstorm      |
 | PyCharm        | 2020.3+ | pycharm       |
 | RustRover      | 2024.1+ | rustrover     |
 | WebStorm       | 2020.3+ | webstorm      |
