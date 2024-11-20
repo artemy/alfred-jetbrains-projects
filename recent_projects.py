@@ -17,7 +17,8 @@ class AlfredItem:
 
 
 class AlfredOutput:
-    def __init__(self, items):
+    def __init__(self, items, bundle_id):
+        self.variables = {"bundle_id": bundle_id}
         self.items = items
 
 
@@ -26,9 +27,9 @@ class CustomEncoder(json.JSONEncoder):
         return obj.__dict__
 
 
-def create_json(projects):
+def create_json(projects, bundle_id):
     return CustomEncoder().encode(
-        AlfredOutput([AlfredItem(project.name, project.path, project.path) for project in projects]))
+        AlfredOutput([AlfredItem(project.name, project.path, project.path) for project in projects], bundle_id))
 
 
 class Project:
@@ -127,14 +128,16 @@ def main():  # pragma: nocover
         projects = list(map(Project, read_projects_from_file(recent_projects_file)))
         projects = filter_and_sort_projects(query, projects)
 
-        print(create_json(projects))
+        print(create_json(projects, app_data["bundle-id"]))
     except IndexError:
         print("No app specified, exiting")
         exit(1)
     except ValueError:
         print("Can't find any preferences for", sys.argv[1])
         exit(1)
-
+    except FileNotFoundError:
+        print(f"The projects file for {sys.argv[1]} does not exist.")
+        exit(1)
 
 if __name__ == "__main__":  # pragma: nocover
     main()

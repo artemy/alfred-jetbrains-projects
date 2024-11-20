@@ -18,11 +18,12 @@ class Unittests(unittest.TestCase):
     @mock.patch('os.path.isfile')
     def test_create_json(self, mock_isfile):
         mock_isfile.return_value = False
-        expected = '{"items": [{"title": "spring-petclinic", ' \
+        expected = '{"variables": {"bundle_id": "app_name"}, ' \
+                   '"items": [{"title": "spring-petclinic", ' \
                    '"subtitle": "/Users/JohnSnow/Documents/spring-petclinic", ' \
                    '"arg": "/Users/JohnSnow/Documents/spring-petclinic", ' \
                    '"type": "file"}]}'
-        self.assertEqual(expected, create_json([self.example_project]))
+        self.assertEqual(expected, create_json([self.example_project], "app_name"))
 
     @mock.patch("os.path.expanduser")
     @mock.patch('os.path.isfile')
@@ -30,15 +31,19 @@ class Unittests(unittest.TestCase):
     def test_create_json_from_custom_name(self, mock_isfile, mock_expand_user):
         mock_expand_user.return_value = '/Users/JohnSnow/Documents/spring-petclinic'
         mock_isfile.return_value = True
-        expected = '{"items": [{"title": "custom_project_name", ' \
+        expected = '{"variables": {"bundle_id": "app_name"}, ' \
+                   '"items": [{"title": "custom_project_name", ' \
                    '"subtitle": "/Users/JohnSnow/Documents/spring-petclinic", ' \
                    '"arg": "/Users/JohnSnow/Documents/spring-petclinic", ' \
                    '"type": "file"}]}'
-        self.assertEqual(expected, create_json([Project("~/Documents/spring-petclinic")]))
+        self.assertEqual(expected, create_json([Project("~/Documents/spring-petclinic")], "app_name"))
 
-    @mock.patch("builtins.open", mock.mock_open(read_data='{"clion": {"folder-name": "CLion"}}'))
+    @mock.patch("builtins.open", mock.mock_open(read_data='{"clion": {"bundle-id": "com.jetbrains.clion", "folder-name": "CLion"}}'))
     def test_read_app_data(self):
-        self.assertEqual(find_app_data("clion"), {"folder-name": 'CLion'})
+        self.assertEqual(find_app_data("clion"), {
+            "folder-name": "CLion",
+            "bundle-id": "com.jetbrains.clion"
+        })
 
         with self.assertRaises(SystemExit) as exitcode:
             find_app_data("rider")

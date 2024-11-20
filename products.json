@@ -1,33 +1,44 @@
 {
     "androidstudio": {
+        "display-name": "Android Studio",
         "folder-name": "AndroidStudio",
-        "preferences-path": "~/Library/Application Support/Google/"
+        "preferences-path": "~/Library/Application Support/Google/",
+        "bundle-id": "com.google.android.studio"
     },
     "appcode": {
-        "folder-name": "AppCode"
+        "folder-name": "AppCode",
+        "bundle-id": "com.jetbrains.appcode"
     },
     "clion": {
-        "folder-name": "CLion"
+        "folder-name": "CLion",
+        "bundle-id": "com.jetbrains.clion"
     },
     "datagrip": {
-        "folder-name": "DataGrip"
+        "folder-name": "DataGrip",
+        "bundle-id": "com.jetbrains.datagrip"
     },
     "goland": {
-        "folder-name": "GoLand"
+        "folder-name": "GoLand",
+        "bundle-id": "com.jetbrains.goland"
     },
     "idea": {
-        "folder-name": "IntelliJIdea"
+        "folder-name": "IntelliJIdea",
+        "bundle-id": "com.jetbrains.intellij"
     },
     "phpstorm": {
-        "folder-name": "PhpStorm"
+        "folder-name": "PhpStorm",
+        "bundle-id": "com.jetbrains.phpstorm"
     },
     "pycharm": {
-        "folder-name": "PyCharm"
+        "folder-name": "PyCharm",
+        "bundle-id": "com.jetbrains.pycharm"
     },
     "rustrover": {
-        "folder-name": "RustRover"
+        "folder-name": "RustRover",
+        "bundle-id": "com.jetbrains.rustrover"
     },
     "webstorm": {
-        "folder-name": "WebStorm"
+        "folder-name": "WebStorm",
+        "bundle-id": "com.jetbrains.webstorm"
     }
 }

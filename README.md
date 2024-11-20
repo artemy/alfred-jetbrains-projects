@@ -9,18 +9,17 @@ Alfred workflow for opening your JetBrains IDEs projects
 
 ## Supported IDEs
 
-| IDE Name       | Version | Keyword       |
-|----------------|---------|---------------|
-| Android Studio | 4.1+    | androidstudio |
-| AppCode        | 2020.3+ | appcode       |
-| CLion          | 2020.3+ | clion         |
-| DataGrip       | 2020.3+ | datagrip      |
-| GoLand         | 2020.3+ | goland        |
-| IntelliJ IDEA  | 2020.3+ | idea          |
-| PhpStorm       | 2024.3+ | phpstorm      |
-| PyCharm        | 2020.3+ | pycharm       |
-| RustRover      | 2024.1+ | rustrover     |
-| WebStorm       | 2020.3+ | webstorm      |
+IDE — Name — Version — Keyword
+- Android Studio — 4.1+ — androidstudio
+- AppCode — 2020.3+ — appcode
+- CLion — 2020.3+ — clion
+- DataGrip — 2020.3+ — datagrip
+- GoLand — 2020.3+ — goland
+- IntelliJ — IDEA — 2020.3+ — idea
+- PhpStorm — 2024.3+ — phpstorm
+- PyCharm — 2020.3+ — pycharm
+- RustRover — 2024.1+ — rustrover
+- WebStorm — 2020.3+ — webstorm
 
 Support for older IDE versions is not guaranteed.
 
@@ -33,8 +32,11 @@ this [guide](https://docs.python-guide.org/starting/install3/osx/).
 
 ### Installing
 
-Download `*.alfredworkflow` file for your IDE from the latest release
+Download the `alfred-jetbrains-projects.alfredworkflow` file from the latest release
 at [Releases](https://github.com/artemy/alfred-jetbrains-projects/releases) page and open it with Alfred.
+
+Make sure you set your keywords for each IDE you use!
+![img.png](.readme/images/img.png)
 
 ### How to Use
 
