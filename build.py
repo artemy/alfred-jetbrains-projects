@@ -3,84 +3,110 @@ import os
 import plistlib
 import re
 import sys
-import uuid
+from dataclasses import dataclass
+from typing import Optional
 
 
-def create_connection(destination_uid):
-    return [{'destinationuid': destination_uid, 'modifiers': 0, 'modifiersubtext': '',
+@dataclass
+class Product:
+    keyword: str
+    uid: str
+    folder_name: str
+    bundle_id: str
+    display_name: Optional[str] = None
+    preferences_path: Optional[str] = None
+
+    def name(self) -> str:
+        return self.display_name if self.display_name else self.folder_name
+
+
+def create_connection(destination_uid: str) -> list[dict]:
+    return [{'destinationuid': destination_uid,
+             'modifiers': 0,
+             'modifiersubtext': '',
              'vitoclose': False}]
 
 
-def create_object(keyword, app_name, uid):
+def create_script_filter(product: Product) -> dict:
     return {
-        'config': {'alfredfiltersresults': False, 'alfredfiltersresultsmatchmode': 0,
+        'config': {'alfredfiltersresults': False,
+                   'alfredfiltersresultsmatchmode': 0,
                    'argumenttreatemptyqueryasnil': False,
-                   'argumenttrimmode': 0, 'argumenttype': 1, 'escaping': 102, 'keyword': f'{{var:{keyword}}}',
-                   'queuedelaycustom': 3, 'queuedelayimmediatelyinitially': True, 'queuedelaymode': 0, 'queuemode': 1,
-                   'runningsubtext': '', 'script': f'python3 recent_projects.py {keyword} "{{query}}"',
+                   'argumenttrimmode': 0,
+                   'argumenttype': 1,
+                   'escaping': 102,
+                   'keyword': f'{{var:{product.keyword}}}',
+                   'queuedelaycustom': 3,
+                   'queuedelayimmediatelyinitially': True,
+                   'queuedelaymode': 0,
+                   'queuemode': 1,
+                   'runningsubtext': '',
+                   'script': f'python3 recent_projects.py {product.keyword} "{{query}}"',
                    'scriptargtype': 0,
-                   'scriptfile': '', 'subtext': '', 'title': f'Search through your recent {app_name} projects',
+                   'scriptfile': '',
+                   'subtext': '',
+                   'title': f'Search through your recent {product.name()} projects',
                    'type': 0,
-                   'withspace': True}, 'type': 'alfred.workflow.input.scriptfilter',
-        'uid': uid, 'version': 3}
+                   'withspace': True},
+        'type': 'alfred.workflow.input.scriptfilter',
+        'uid': product.uid,
+        'version': 3}
 
 
-def create_userconfigurationconfig(keyword, app_name):
-    return {'config': {'default': '', 'placeholder': keyword, 'required': False, 'trim': True},
+def create_userconfigurationconfig(product: Product) -> dict:
+    return {'config': {'default': '',
+                       'placeholder': product.keyword,
+                       'required': False,
+                       'trim': True},
             'description': 'Leave this blank to disable this IDE',
-            'label': f'{app_name} Keyword', 'type': 'textfield',
-            'variable': keyword}
+            'label': f'{product.name()} Keyword',
+            'type': 'textfield',
+            'variable': product.keyword}
 
 
-def create_uidata(xpos, ypos):
+def create_coordinates(xpos: int, ypos: int) -> dict[str, int]:
     return {'xpos': xpos, 'ypos': ypos}
+
+
+def get_run_script_uid(plist) -> str:
+    for obj in plist["objects"]:
+        if obj["config"]["script"] == 'open -nb $bundle_id --args $@' and obj["uid"] is not None:
+            return obj["uid"]
+    raise ValueError(
+        f"Could not find the script object with 'open -nb $bundle_id --args $@' as the script in the template")
+
+
+def create_coordinate_ruler(size: int) -> list[int]:
+    start = 40
+    step = 120
+    return list(range(start, start + (step * size), step))
 
 
 def build():
     # Collect info
-    with open('products.json', 'r') as outfile:
-        APPS = json.load(outfile)
+    products = get_products()
 
     with open('alfred/template.plist', 'rb') as fp:
         plist = plistlib.load(fp)
 
-    keywords = APPS.keys()
-    app_names = [item.get('display-name', item['folder-name']) for item in APPS.values()]
-    uids = [str(uuid.uuid4()).upper() for _ in range(len(keywords))]
-
-    start = 30
-    number = len(keywords)
-    step = 120
-
-    y_coordinates = list(range(start, start + (step * number), step))
-
     version = sys.argv[1] if len(sys.argv) > 1 else "unknown"
 
     # Modify plist
-    if not (len(keywords) == len(app_names) == len(uids) == len(y_coordinates)):
-        raise ValueError("All of the lists must be equal length.")
-
     # Get the UID of the runscript action in the template
-    script_uid = None
-    for object in plist["objects"]:
-        if object["config"]["script"] == 'open -nb $bundle_id --args $@':
-            script_uid = object["uid"]
-            break
-    if script_uid is None:
-        raise ValueError(f"Could not find the script object with 'open -nb $bundle_id --args $@' as the script in the template")
+    run_script_uid = get_run_script_uid(plist)
+    run_script_connection = create_connection(run_script_uid)
 
+    plist["connections"].update({product.uid: run_script_connection for product in products})
 
-    plist["connections"].update({uid: create_connection(script_uid) for uid in uids})
+    y_coordinate_ruler = create_coordinate_ruler(len(products))
+    plist["uidata"].update(
+        {product.uid: create_coordinates(30, coord) for product, coord in zip(products, y_coordinate_ruler)})
 
-    plist["uidata"].update({uid: create_uidata(30, coord) for uid, coord in zip(uids, y_coordinates)})
+    plist["uidata"][run_script_uid]["ypos"] = sum(y_coordinate_ruler) / len(y_coordinate_ruler)
 
-    plist["uidata"][script_uid]["ypos"] = min(y_coordinates) + (max(y_coordinates) - min(y_coordinates)) / 2
+    plist["objects"].extend([create_script_filter(product) for product in products])
 
-    plist["objects"].extend(
-        [create_object(keyword, app_name, uid) for keyword, app_name, uid in zip(keywords, app_names, uids)])
-
-    plist["userconfigurationconfig"].extend(
-        [create_userconfigurationconfig(keyword, app_name) for keyword, app_name in zip(keywords, app_names)])
+    plist["userconfigurationconfig"].extend([create_userconfigurationconfig(product) for product in products])
 
     plist["version"] = version
 
@@ -92,20 +118,28 @@ def build():
         plist["readme"] = content
 
     # Output
-    print(f"Building {app_names}")
+    print(f"Building {[product.name() for product in products]}")
     os.system(f'mkdir -p out')
 
     with open('out/info.plist', 'wb') as fp:
         plistlib.dump(plist, fp)
 
-    for i, keyword in enumerate(keywords):
-        os.system(f'cp icons/{keyword}.png ./out/{uids[i]}.png')
+    for product in products:
+        os.system(f'cp icons/{product.keyword}.png ./out/{product.uid}.png')
 
     os.system(
         f'zip -j -r alfred-jetbrains-projects.alfredworkflow out/* recent_projects.py products.json icon.png .readme/*')
 
 
+def get_products() -> list[Product]:
+    with open('products.json', 'r') as outfile:
+        js = json.load(outfile)
+        products = [Product(k, **v) for k, v in js.items()]
+    return products
+
+
 def clean():
+    os.system("rm out/*")
     os.system("rm *.alfredworkflow")
 
 

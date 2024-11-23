@@ -90,13 +90,13 @@ def find_recentprojects_file(application):
 
 
 def preferences_path_or_default(application):
-    return application["preferences-path"] if "preferences-path" in application \
+    return application["preferences_path"] if "preferences_path" in application \
         else "~/Library/Application Support/JetBrains/"
 
 
 def find_preferences_folders(preferences_path, application):
     return [folder_name for folder_name in next(os.walk(preferences_path))[1] if
-            application["folder-name"] in folder_name and not should_ignore_folder(folder_name)]
+            application["folder_name"] in folder_name and not should_ignore_folder(folder_name)]
 
 
 def should_ignore_folder(folder_name):
@@ -128,7 +128,7 @@ def main():  # pragma: nocover
         projects = list(map(Project, read_projects_from_file(recent_projects_file)))
         projects = filter_and_sort_projects(query, projects)
 
-        print(create_json(projects, app_data["bundle-id"]))
+        print(create_json(projects, app_data["bundle_id"]))
     except IndexError:
         print("No app specified, exiting")
         exit(1)
