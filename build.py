@@ -45,6 +45,7 @@ def create_script_filter(product: Product) -> dict:
                    'scriptargtype': 0,
                    'scriptfile': '',
                    'subtext': '',
+                   'skipuniversalaction': True,
                    'title': f'Search through your recent {product.name()} projects',
                    'type': 0,
                    'withspace': True},
