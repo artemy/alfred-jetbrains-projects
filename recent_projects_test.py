@@ -20,8 +20,8 @@ class Unittests(unittest.TestCase):
         mock_isfile.return_value = False
         expected = '{"variables": {"bundle_id": "app_name"}, ' \
                    '"items": [{"title": "spring-petclinic", ' \
-                   '"subtitle": "/Users/JohnSnow/Documents/spring-petclinic", ' \
-                   '"arg": "/Users/JohnSnow/Documents/spring-petclinic", ' \
+                   '"subtitle": "~/Documents/spring-petclinic", ' \
+                   '"arg": "~/Documents/spring-petclinic", ' \
                    '"type": "file"}]}'
         self.assertEqual(expected, create_json([self.example_project], "app_name"))
 
@@ -33,8 +33,8 @@ class Unittests(unittest.TestCase):
         mock_isfile.return_value = True
         expected = '{"variables": {"bundle_id": "app_name"}, ' \
                    '"items": [{"title": "custom_project_name", ' \
-                   '"subtitle": "/Users/JohnSnow/Documents/spring-petclinic", ' \
-                   '"arg": "/Users/JohnSnow/Documents/spring-petclinic", ' \
+                   '"subtitle": "~/Documents/spring-petclinic", ' \
+                   '"arg": "~/Documents/spring-petclinic", ' \
                    '"type": "file"}]}'
         self.assertEqual(expected, create_json([Project("~/Documents/spring-petclinic")], "app_name"))
 

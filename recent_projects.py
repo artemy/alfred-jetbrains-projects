@@ -34,8 +34,9 @@ def create_json(projects, bundle_id):
 
 class Project:
     def __init__(self, path):
-        self.path = os.path.expanduser(path)
-        name_file = self.path + "/.idea/.name"
+        self.path = path
+        # os.path.expanduser() is needed for os.path.isfile(), but Alfred can handle the `~` shorthand in the returned JSON.
+        name_file = os.path.expanduser(self.path) + "/.idea/.name"
 
         if os.path.isfile(name_file):
             self.name = open(name_file).read()

@@ -112,7 +112,7 @@ def build():
 
     with open("README.md", 'r', encoding='utf-8') as file:
         content = file.read()
-        # Replace nested .readme paths with flattened paths
+        # Replace nested .readme image paths with flattened paths
         content = re.sub(r'\.readme/(?:[^/\s]+/)*([^/\s]+)', r'\1', content)
 
         plist["readme"] = content
