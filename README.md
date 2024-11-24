@@ -88,3 +88,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 See [CONTRIBUTORS.md](CONTRIBUTORS.md)
 and [contributors](https://github.com/artemy/alfred-jetbrains-projects/contributors) for the list of contributors.
+
+## Legal
+This workflow is not associated with JetBrains in any way.
+
+The logos used are:
+> Copyright © 2024 JetBrains s.r.o. JetBrains and the JetBrains logo are trademarks of JetBrains s.r.o.
