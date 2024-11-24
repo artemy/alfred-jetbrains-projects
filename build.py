@@ -59,7 +59,7 @@ def create_userconfigurationconfig(product: Product) -> dict:
                        'placeholder': product.keyword,
                        'required': False,
                        'trim': True},
-            'description': 'Leave this blank to disable this IDE',
+            'description': f'❗️Set a keyword to enable {product.name()}. Your setting will persist across workflow upgrades.',
             'label': f'{product.name()} Keyword',
             'type': 'textfield',
             'variable': product.keyword}

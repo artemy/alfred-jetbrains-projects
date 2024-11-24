@@ -1,13 +1,40 @@
-# JetBrains projects for Alfred
+# Recent JetBrains Projects for Alfred
 
 ![test & release](https://github.com/artemy/alfred-jetbrains-projects/workflows/test%20&%20release/badge.svg)
 ![MIT License](https://img.shields.io/github/license/artemy/alfred-jetbrains-projects)
 
-Alfred workflow for opening your JetBrains IDEs projects
+An Alfred workflow for opening your JetBrains IDEs projects
 
 ![image](.readme/images/screenshot.png)
 
-## Supported IDEs
+## Getting started
+
+### Prerequisites
+
+Project requires Python 3.9+ to run, which is not included by default with macOS. You can install Python 3 using
+this [guide](https://docs.python-guide.org/starting/install3/osx/).
+
+### Installing
+
+Download the `alfred-jetbrains-projects.alfredworkflow` file from the latest release
+at [Releases](https://github.com/artemy/alfred-jetbrains-projects/releases) page and open it with Alfred.
+
+#### ⚠️ Set a keyword for every IDE you use  ⚠️
+
+By default, each IDE is inactive. Setting a keywords activates an IDE:
+![img.png](.readme/images/img.png)
+
+## How to Use
+
+Open Alfred and type keyword for your IDE (see Supported IDEs below). The workflow will display a list of recent projects (
+sorted by time last opened descending).
+
+You can further filter project list by typing additional words. Fuzzy first-letter search is supported (i.e.
+typing `map` will find `my-awesome-project`):
+
+![animation](.readme/images/animation.gif)
+
+### Supported IDEs
 
 IDE — Name — Version — Keyword
 - Android Studio — 4.1+ — androidstudio
@@ -23,32 +50,11 @@ IDE — Name — Version — Keyword
 
 Support for older IDE versions is not guaranteed.
 
-## Getting started
+## Contributing
 
-### Prerequisites
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Project requires Python 3.9+ to run, which is not included by default with macOS. You can install Python 3 using
-this [guide](https://docs.python-guide.org/starting/install3/osx/).
-
-### Installing
-
-Download the `alfred-jetbrains-projects.alfredworkflow` file from the latest release
-at [Releases](https://github.com/artemy/alfred-jetbrains-projects/releases) page and open it with Alfred.
-
-Make sure you set your keywords for each IDE you use!
-![img.png](.readme/images/img.png)
-
-### How to Use
-
-Open Alfred and type keyword for your IDE (see Supported IDEs above). Workflow will display list of recent projects (
-sorted by time last opened descending).
-
-You can further filter project list by typing additional words. Fuzzy first-letter search is supported (i.e.
-typing `map` will find `my-awesome-project`):
-
-![animation](.readme/images/animation.gif)
-
-## Running the tests
+### Running the tests
 
 Make sure to first install test dependencies:
 
@@ -73,10 +79,6 @@ coverage report -m # display coverage figures
 
 * [Python 3.9](https://docs.python.org/3.9/)
 * [coverage.py](https://coverage.readthedocs.io/) - Code coverage measurement
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
