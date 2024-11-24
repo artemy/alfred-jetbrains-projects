@@ -13,7 +13,7 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>Jetbrains Projects</string>
+	<string>Recent JetBrains Projects</string>
 	<key>objects</key>
 	<array>
 		<dict>
