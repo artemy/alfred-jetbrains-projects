@@ -17,7 +17,8 @@ class AlfredItem:
 
 
 class AlfredOutput:
-    def __init__(self, items):
+    def __init__(self, items, bundle_id):
+        self.variables = {"bundle_id": bundle_id}
         self.items = items
 
 
@@ -26,15 +27,16 @@ class CustomEncoder(json.JSONEncoder):
         return obj.__dict__
 
 
-def create_json(projects):
+def create_json(projects, bundle_id):
     return CustomEncoder().encode(
-        AlfredOutput([AlfredItem(project.name, project.path, project.path) for project in projects]))
+        AlfredOutput([AlfredItem(project.name, project.path, project.path) for project in projects], bundle_id))
 
 
 class Project:
     def __init__(self, path):
-        self.path = os.path.expanduser(path)
-        name_file = self.path + "/.idea/.name"
+        self.path = path
+        # os.path.expanduser() is needed for os.path.isfile(), but Alfred can handle the `~` shorthand in the returned JSON.
+        name_file = os.path.expanduser(self.path) + "/.idea/.name"
 
         if os.path.isfile(name_file):
             self.name = open(name_file).read()
@@ -89,13 +91,13 @@ def find_recentprojects_file(application):
 
 
 def preferences_path_or_default(application):
-    return application["preferences-path"] if "preferences-path" in application \
+    return application["preferences_path"] if "preferences_path" in application \
         else "~/Library/Application Support/JetBrains/"
 
 
 def find_preferences_folders(preferences_path, application):
     return [folder_name for folder_name in next(os.walk(preferences_path))[1] if
-            application["folder-name"] in folder_name and not should_ignore_folder(folder_name)]
+            application["folder_name"] in folder_name and not should_ignore_folder(folder_name)]
 
 
 def should_ignore_folder(folder_name):
@@ -127,14 +129,16 @@ def main():  # pragma: nocover
         projects = list(map(Project, read_projects_from_file(recent_projects_file)))
         projects = filter_and_sort_projects(query, projects)
 
-        print(create_json(projects))
+        print(create_json(projects, app_data["bundle_id"]))
     except IndexError:
         print("No app specified, exiting")
         exit(1)
     except ValueError:
         print("Can't find any preferences for", sys.argv[1])
         exit(1)
-
+    except FileNotFoundError:
+        print(f"The projects file for {sys.argv[1]} does not exist.")
+        exit(1)
 
 if __name__ == "__main__":  # pragma: nocover
     main()

@@ -1,33 +1,55 @@
 {
     "androidstudio": {
-        "folder-name": "AndroidStudio",
-        "preferences-path": "~/Library/Application Support/Google/"
+        "display_name": "Android Studio",
+        "folder_name": "AndroidStudio",
+        "preferences_path": "~/Library/Application Support/Google/",
+        "bundle_id": "com.google.android.studio",
+        "uid": "92b0f147-c697-4f0b-b10a-10d823534408"
     },
     "appcode": {
-        "folder-name": "AppCode"
+        "folder_name": "AppCode",
+        "bundle_id": "com.jetbrains.appcode",
+        "uid": "d813b1dd-ee4a-470f-8c4d-73a55248e1b5"
     },
     "clion": {
-        "folder-name": "CLion"
+        "folder_name": "CLion",
+        "bundle_id": "com.jetbrains.clion",
+        "uid": "51a5ab39-dad4-47da-90af-a59be0f3b960"
     },
     "datagrip": {
-        "folder-name": "DataGrip"
+        "folder_name": "DataGrip",
+        "bundle_id": "com.jetbrains.datagrip",
+        "uid": "cd332057-2b16-4243-bbdf-a7d63718cf44"
     },
     "goland": {
-        "folder-name": "GoLand"
+        "folder_name": "GoLand",
+        "bundle_id": "com.jetbrains.goland",
+        "uid": "4d578e7e-c467-4e5c-9126-977f2226cf9e"
     },
     "idea": {
-        "folder-name": "IntelliJIdea"
+        "display_name": "IntelliJ IDEA",
+        "folder_name": "IntelliJIdea",
+        "bundle_id": "com.jetbrains.intellij",
+        "uid": "24d32321-9a0e-4c25-a26b-009544cfbd8b"
     },
     "phpstorm": {
-        "folder-name": "PhpStorm"
+        "folder_name": "PhpStorm",
+        "bundle_id": "com.jetbrains.phpstorm",
+        "uid": "9611a7b4-f91a-46f9-b2ef-aec592cbc366"
     },
     "pycharm": {
-        "folder-name": "PyCharm"
+        "folder_name": "PyCharm",
+        "bundle_id": "com.jetbrains.pycharm",
+        "uid": "ee83c053-d389-4de0-8227-f7b836fbec98"
     },
     "rustrover": {
-        "folder-name": "RustRover"
+        "folder_name": "RustRover",
+        "bundle_id": "com.jetbrains.rustrover",
+        "uid": "3a187dcf-2949-427a-a9cb-96a90f329e71"
     },
     "webstorm": {
-        "folder-name": "WebStorm"
+        "folder_name": "WebStorm",
+        "bundle_id": "com.jetbrains.webstorm",
+        "uid": "714d0708-2185-43e9-979f-92e09c09aca0"
     }
 }

@@ -23,8 +23,11 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/')
     steps:
     - uses: actions/checkout@v4
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
     - name: Build artifacts
-      run: python3 build.py
+      run: python3 build.py ${{ env.VERSION }}
     - name: Create release
       uses: softprops/action-gh-release@v2
       with:

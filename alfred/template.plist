@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.github.artemy.jb_projects</string>
+	<key>connections</key>
+	<dict/>
+	<key>createdby</key>
+	<string>Artem Makarov</string>
+	<key>description</key>
+	<string>Alfred workflow for opening your JetBrains IDEs projects</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Recent JetBrains Projects</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>open -nb $bundle_id --args $@</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2A23DCF4-C92B-48F0-99E8-A560582B30B5</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>2A23DCF4-C92B-48F0-99E8-A560582B30B5</key>
+		<dict>
+			<key>xpos</key>
+			<real>470</real>
+			<key>ypos</key>
+			<real>480</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>version</key>
+	<string>3.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/artemy/alfred-jetbrains-projects</string>
+</dict>
+</plist>
