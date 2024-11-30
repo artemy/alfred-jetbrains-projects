@@ -59,8 +59,8 @@ def create_userconfigurationconfig(product: Product) -> dict:
                        'placeholder': product.keyword,
                        'required': False,
                        'trim': True},
-            'description': f'❗️Set a keyword to enable {product.name()}. Your setting will persist across workflow upgrades.',
-            'label': f'{product.name()} Keyword',
+            'description': f'Assign a keyword to enable {product.name()}',
+            'label': f'{product.name()} keyword',
             'type': 'textfield',
             'variable': product.keyword}
 
@@ -111,10 +111,10 @@ def build():
 
     plist["version"] = version
 
-    with open("README.md", 'r', encoding='utf-8') as file:
+    with open(".readme/embedded-readme.md", 'r', encoding='utf-8') as file:
         content = file.read()
-        # Replace nested .readme image paths with flattened paths
-        content = re.sub(r'\.readme/(?:[^/\s]+/)*([^/\s]+)', r'\1', content)
+        # Replace nested image paths with flattened paths
+        content = re.sub(r'\((?:[^/\s]+/)*([^/\s]+)\)', r'(\1)', content)
 
         plist["readme"] = content
 

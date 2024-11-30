@@ -19,34 +19,39 @@ this [guide](https://docs.python-guide.org/starting/install3/osx/).
 Download the `alfred-jetbrains-projects.alfredworkflow` file from the latest release
 at [Releases](https://github.com/artemy/alfred-jetbrains-projects/releases) page and open it with Alfred.
 
-#### ⚠️ Set a keyword for every IDE you use  ⚠️
+### ⚠️ Assign a keyword for every IDE you use ⚠️
 
-By default, each IDE is inactive. Setting a keywords activates an IDE:
-![img.png](.readme/images/img.png)
+By default, all IDEs are disabled. Assigning keywords activates specific IDEs:
+![img.png](.readme/images/configuration.png)
+
+Keyword settings are persisted across workflow upgrades.
 
 ## How to Use
 
-Open Alfred and type keyword for your IDE (see Supported IDEs below). The workflow will display a list of recent projects (
-sorted by time last opened descending).
+Open Alfred and type the keyword for your IDE (see Supported IDEs below).
+The workflow will display a list of recent
+projects (sorted by time last opened descending).
 
-You can further filter project list by typing additional words. Fuzzy first-letter search is supported (i.e.
+You can further filter a project list by typing additional words.
+Fuzzy first-letter search is supported (i.e.,
 typing `map` will find `my-awesome-project`):
 
 ![animation](.readme/images/animation.gif)
 
 ### Supported IDEs
 
-IDE — Name — Version — Keyword
-- Android Studio — 4.1+ — androidstudio
-- AppCode — 2020.3+ — appcode
-- CLion — 2020.3+ — clion
-- DataGrip — 2020.3+ — datagrip
-- GoLand — 2020.3+ — goland
-- IntelliJ — IDEA — 2020.3+ — idea
-- PhpStorm — 2024.3+ — phpstorm
-- PyCharm — 2020.3+ — pycharm
-- RustRover — 2024.1+ — rustrover
-- WebStorm — 2020.3+ — webstorm
+| IDE Name       | Version | Keyword       |
+|----------------|---------|---------------|
+| Android Studio | 4.1+    | androidstudio |
+| AppCode        | 2020.3+ | appcode       |
+| CLion          | 2020.3+ | clion         |
+| DataGrip       | 2020.3+ | datagrip      |
+| GoLand         | 2020.3+ | goland        |
+| IntelliJ IDEA  | 2020.3+ | idea          |
+| PhpStorm       | 2024.3+ | phpstorm      |
+| PyCharm        | 2020.3+ | pycharm       |
+| RustRover      | 2024.1+ | rustrover     |
+| WebStorm       | 2020.3+ | webstorm      |
 
 Support for older IDE versions is not guaranteed.
 
@@ -82,7 +87,7 @@ coverage report -m # display coverage figures
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License — see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
@@ -90,7 +95,7 @@ See [CONTRIBUTORS.md](CONTRIBUTORS.md)
 and [contributors](https://github.com/artemy/alfred-jetbrains-projects/contributors) for the list of contributors.
 
 ## Legal
+
 This workflow is not associated with JetBrains in any way.
 
-The logos used are:
-> Copyright © 2024 JetBrains s.r.o. JetBrains and the JetBrains logo are trademarks of JetBrains s.r.o.
+Copyright © 2024 JetBrains s.r.o. JetBrains and the JetBrains logo are trademarks of JetBrains s.r.o.
