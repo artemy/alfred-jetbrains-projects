@@ -22,7 +22,7 @@ at [Releases](https://github.com/artemy/alfred-jetbrains-projects/releases) page
 ### ⚠️ Assign a keyword for every IDE you use ⚠️
 
 By default, all IDEs are disabled. Assigning keywords activates specific IDEs:
-![img.png](.readme/images/configuration.png)
+<img src="https://github.com/artemy/alfred-jetbrains-projects/raw/master/.readme/images/configuration.png" width="50%" height="50%">
 
 Keyword settings are persisted across workflow upgrades.
 
