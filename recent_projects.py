@@ -105,7 +105,8 @@ def should_ignore_folder(folder_name):
 def read_projects_from_file(most_recent_projects_file):
     tree = ElementTree.parse(most_recent_projects_file)
     projects = [t.attrib['key'].replace('$USER_HOME$', "~") for t
-                in tree.findall(".//component[@name='RecentProjectsManager']/option[@name='additionalInfo']/map/entry")]
+                in tree.findall(".//component[@name='RecentProjectsManager']/option[@name='additionalInfo']/map/entry")
+                if t.find("value/RecentProjectMetaInfo[@hidden='true']") is None]
     return reversed(projects)
 
 
@@ -134,6 +135,7 @@ def main():  # pragma: nocover
     except ValueError:
         print("Can't find any preferences for", sys.argv[1])
         exit(1)
+
 
 
 if __name__ == "__main__":  # pragma: nocover
