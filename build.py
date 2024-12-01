@@ -112,11 +112,7 @@ def build():
     plist["version"] = version
 
     with open(".readme/embedded-readme.md", 'r', encoding='utf-8') as file:
-        content = file.read()
-        # Replace nested image paths with flattened paths
-        content = re.sub(r'\((?:[^/\s]+/)*([^/\s]+)\)', r'(\1)', content)
-
-        plist["readme"] = content
+        plist["readme"] = file.read()
 
     # Output
     print(f"Building {[product.name() for product in products]}")
@@ -129,7 +125,7 @@ def build():
         os.system(f'cp icons/{product.keyword}.png ./out/{product.uid}.png')
 
     os.system(
-        f'zip -j -r alfred-jetbrains-projects.alfredworkflow out/* recent_projects.py products.json icon.png .readme/*')
+        f'zip -j -r alfred-jetbrains-projects.alfredworkflow out/* recent_projects.py products.json icon.png')
 
 
 def get_products() -> list[Product]:

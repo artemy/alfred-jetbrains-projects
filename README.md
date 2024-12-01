@@ -32,7 +32,7 @@ Open Alfred and type the keyword for your IDE (see Supported IDEs below).
 The workflow will display a list of recent
 projects (sorted by time last opened descending).
 
-You can further filter a project list by typing additional words.
+You can further filter a project list by typing additional characters.
 Fuzzy first-letter search is supported (i.e.,
 typing `map` will find `my-awesome-project`):
 

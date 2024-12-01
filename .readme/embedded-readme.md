@@ -17,11 +17,8 @@ Keyword settings are persisted across workflow upgrades.
 Open Alfred and type the keyword for your IDE. The workflow will display a list of recent
 projects (sorted by time last opened descending).
 
-You can further filter a project list by typing additional words. Fuzzy first-letter search is supported (i.e.,
-typing `map` will find `my-awesome-project`):
-
-![animation](images/animation.gif)
-
+You can further filter a project list by typing additional characters. Fuzzy first-letter search is supported (i.e.,
+typing `map` will find `my-awesome-project`).
 
 ## Legal
 
