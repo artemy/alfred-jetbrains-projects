@@ -1,4 +1,5 @@
 import os
+import sys
 
 APPS = [
     ['Android Studio', 'androidstudio', 'com.google.android.studio'],
@@ -16,7 +17,8 @@ APPS = [
 
 def prepare_workflow(app):
     app_name, keyword, bundle = app
-    print(f"Building {app_name}")
+    version = sys.argv[1] if len(sys.argv) > 1 else "unknown"
+    print(f"Building {app_name} v{version}")
     os.system(f'mkdir -p out/{keyword}')
     os.system(f'cp icons/{keyword}.png ./out/{keyword}/icon.png')
     os.system(f'cp icons/{keyword}.png ./out/{keyword}/36E4312B-0CAB-4AE7-A8B6-E30EAF07B766.png')
@@ -24,6 +26,7 @@ def prepare_workflow(app):
               f'-e "s/%APPNAME%/{app_name}/g" '
               f'-e "s/%KEYWORD%/{keyword}/g" '
               f'-e "s/%BUNDLE%/{bundle}/g" '
+              f'-e "s/%VERSION%/{version}/g" '
               f' alfred/info.plist > out/{keyword}/info.plist')
     os.system(f'zip -j -r {keyword}.alfredworkflow out/{keyword}/* recent_projects.py products.json')
 

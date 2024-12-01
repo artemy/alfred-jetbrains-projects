@@ -127,7 +127,7 @@
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.4</string>
+	<string>%VERSION%</string>
 	<key>webaddress</key>
 	<string>https://github.com/artemy/alfred-jetbrains-projects</string>
 </dict>
