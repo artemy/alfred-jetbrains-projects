@@ -24,7 +24,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>open -nb $bundle_id --args $@</string>
+				<string>open -nb "${bundle_id}" --args "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>

@@ -41,8 +41,8 @@ def create_script_filter(product: Product) -> dict:
                    'queuedelaymode': 0,
                    'queuemode': 1,
                    'runningsubtext': '',
-                   'script': f'/usr/bin/python3 recent_projects.py {product.keyword} "{{query}}"',
-                   'scriptargtype': 0,
+                   'script': f'/usr/bin/python3 recent_projects.py "{product.keyword}" "${{1}}"',
+                   'scriptargtype': 1,
                    'scriptfile': '',
                    'subtext': '',
                    'skipuniversalaction': True,
@@ -71,10 +71,10 @@ def create_coordinates(xpos: int, ypos: int) -> dict[str, int]:
 
 def get_run_script_uid(plist) -> str:
     for obj in plist["objects"]:
-        if obj["config"]["script"] == 'open -nb $bundle_id --args $@' and obj["uid"] is not None:
+        if obj["config"]["script"] == 'open -nb "${bundle_id}" --args "${1}"' and obj["uid"] is not None:
             return obj["uid"]
     raise ValueError(
-        f"Could not find the script object with 'open -nb $bundle_id --args $@' as the script in the template")
+        f'Could not find the script object with \'open -nb "${{bundle_id}}" --args "${{1}}"\' as the script in the template')
 
 
 def create_coordinate_ruler(size: int) -> list[int]:
