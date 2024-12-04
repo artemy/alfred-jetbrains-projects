@@ -91,6 +91,7 @@ def build():
         plist = plistlib.load(fp)
 
     version = sys.argv[1] if len(sys.argv) > 1 else "unknown"
+    version = re.sub(r'v(.*)', r'\1', version)
 
     # Modify plist
     # Get the UID of the runscript action in the template
