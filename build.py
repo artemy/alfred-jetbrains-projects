@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 
 APPS = [
@@ -18,6 +19,7 @@ APPS = [
 def prepare_workflow(app):
     app_name, keyword, bundle = app
     version = sys.argv[1] if len(sys.argv) > 1 else "unknown"
+    version = re.sub(r'v(.*)', r'\1', version)
     print(f"Building {app_name} v{version}")
     os.system(f'mkdir -p out/{keyword}')
     os.system(f'cp icons/{keyword}.png ./out/{keyword}/icon.png')
