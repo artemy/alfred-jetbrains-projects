@@ -60,7 +60,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>python3 recent_projects.py %KEYWORD% "{query}"</string>
+				<string>/usr/bin/python3 recent_projects.py %KEYWORD% "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
