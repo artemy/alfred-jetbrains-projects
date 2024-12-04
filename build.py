@@ -41,7 +41,7 @@ def create_script_filter(product: Product) -> dict:
                    'queuedelaymode': 0,
                    'queuemode': 1,
                    'runningsubtext': '',
-                   'script': f'python3 recent_projects.py {product.keyword} "{{query}}"',
+                   'script': f'/usr/bin/python3 recent_projects.py {product.keyword} "{{query}}"',
                    'scriptargtype': 0,
                    'scriptfile': '',
                    'subtext': '',
