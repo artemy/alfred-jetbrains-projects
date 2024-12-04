@@ -60,9 +60,9 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>/usr/bin/python3 recent_projects.py %KEYWORD% "{query}"</string>
+				<string>/usr/bin/python3 recent_projects.py "%KEYWORD%" "${1}"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
@@ -89,7 +89,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>open -nb "%BUNDLE%" --args $@</string>
+				<string>open -nb "%BUNDLE%" --args "${1}"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
