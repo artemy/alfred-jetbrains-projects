@@ -27,6 +27,9 @@
     "rustrover": {
         "folder-name": "RustRover"
     },
+    "rider": {
+        "folder-name": "Rider"
+    },
     "webstorm": {
         "folder-name": "WebStorm"
     }

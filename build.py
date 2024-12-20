@@ -12,6 +12,7 @@ APPS = [
     ['PhpStorm', 'phpstorm', 'com.jetbrains.phpstorm'],
     ['PyCharm', 'pycharm', 'com.jetbrains.pycharm'],
     ['RustRover', 'rustrover', 'com.jetbrains.rustrover'],
+    ['Rider', 'rider', 'com.jetbrains.rider'],
     ['WebStorm', 'webstorm', 'com.jetbrains.webstorm'],
 ]
 

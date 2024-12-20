@@ -82,10 +82,11 @@ def find_app_data(app):
     exit(1)
 
 
-def find_recentprojects_file(application):
-    preferences_path = os.path.expanduser(preferences_path_or_default(application))
-    most_recent_preferences = max(find_preferences_folders(preferences_path, application))
-    return "{}{}/options/{}.xml".format(preferences_path, most_recent_preferences, "recentProjects")
+def find_recentprojects_file(app_data):
+    preferences_path = os.path.expanduser(preferences_path_or_default(app_data))
+    most_recent_preferences = max(find_preferences_folders(preferences_path, app_data))
+    filename = "recentSolutions.xml" if app_data['folder-name'] == 'Rider' else "recentProjects.xml"
+    return "{}{}/options/{}".format(preferences_path, most_recent_preferences, filename)
 
 
 def preferences_path_or_default(application):
@@ -102,10 +103,12 @@ def should_ignore_folder(folder_name):
     return "backup" in folder_name
 
 
-def read_projects_from_file(most_recent_projects_file):
+def read_projects_from_file(most_recent_projects_file, app_name):
     tree = ElementTree.parse(most_recent_projects_file)
+    component_name = "RiderRecentProjectsManager" if app_name == 'rider' else "RecentProjectsManager"
+
     projects = [t.attrib['key'].replace('$USER_HOME$', "~") for t
-                in tree.findall(".//component[@name='RecentProjectsManager']/option[@name='additionalInfo']/map/entry")
+                in tree.findall(f".//component[@name='{component_name}']/option[@name='additionalInfo']/map/entry")
                 if t.find("value/RecentProjectMetaInfo[@hidden='true']") is None]
     return reversed(projects)
 
@@ -119,13 +122,14 @@ def filter_and_sort_projects(query, projects):
 
 
 def main():  # pragma: nocover
+    app_name = sys.argv[1]
     try:
-        app_data = find_app_data(sys.argv[1])
+        app_data = find_app_data(app_name)
         recent_projects_file = find_recentprojects_file(app_data)
 
         query = sys.argv[2].strip().lower()
 
-        projects = list(map(Project, read_projects_from_file(recent_projects_file)))
+        projects = list(map(Project, read_projects_from_file(recent_projects_file, app_name)))
         projects = filter_and_sort_projects(query, projects)
 
         print(create_json(projects))
@@ -135,7 +139,6 @@ def main():  # pragma: nocover
     except ValueError:
         print("Can't find any preferences for", sys.argv[1])
         exit(1)
-
 
 
 if __name__ == "__main__":  # pragma: nocover

@@ -19,6 +19,7 @@ Alfred workflow for opening your JetBrains IDEs projects
 | IntelliJ IDEA  | 2020.3+ | idea          |
 | PhpStorm       | 2024.3+ | phpstorm      |
 | PyCharm        | 2020.3+ | pycharm       |
+| Rider          | 2024.3+ | rider         |
 | RustRover      | 2024.1+ | rustrover     |
 | WebStorm       | 2020.3+ | webstorm      |
 

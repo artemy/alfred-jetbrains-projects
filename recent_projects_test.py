@@ -82,6 +82,19 @@ class Unittests(unittest.TestCase):
             find_recentprojects_file({"folder-name": "AndroidStudio"}),
             '/Users/JohnSnow/Library/Application Support/Google/AndroidStudio4.1/options/recentProjects.xml')
 
+    @mock.patch("os.path.expanduser")
+    @mock.patch("os.walk")
+    def test_find_recent_files_xml_rider(self, mock_walk, expand_user):
+        expand_user.return_value = '/Users/JohnSnow/Library/Application Support/JetBrains/'
+        mock_walk.return_value = iter([
+            ('/Path',
+             ['Rider2024.3'], []),
+        ])
+        """Happy Flow"""
+        self.assertEqual(
+            find_recentprojects_file({"folder-name": "Rider"}),
+            '/Users/JohnSnow/Library/Application Support/JetBrains/Rider2024.3/options/recentSolutions.xml')
+
     @mock.patch("builtins.open", mock.mock_open(
         read_data='<application>'
                   '<component name="RecentProjectsManager">'
@@ -99,7 +112,26 @@ class Unittests(unittest.TestCase):
                   '</component>'
                   '</application>'))
     def test_read_projects(self):
-        self.assertEqual(list(read_projects_from_file(self.recentProjectsPath)), self.example_projects_paths)
+        self.assertEqual(list(read_projects_from_file(self.recentProjectsPath, 'clion')), self.example_projects_paths)
+
+    @mock.patch("builtins.open", mock.mock_open(
+        read_data='<application>'
+                  '<component name="RiderRecentProjectsManager">'
+                  '<option name="additionalInfo">'
+                  '<map>'
+                  '<entry key="$USER_HOME$/Desktop/trash/My Project (42)" />'
+                  '<entry key="$USER_HOME$/Documents/spring-petclinic" />'
+                  '<entry key="hidden-project">'
+                  '<value>'
+                  '<RecentProjectMetaInfo hidden="true"/>'
+                  '</value>'
+                  '</entry>'
+                  '</map>'
+                  '</option>'
+                  '</component>'
+                  '</application>'))
+    def test_read_rider_projects(self):
+        self.assertEqual(list(read_projects_from_file(self.recentProjectsPath, 'rider')), self.example_projects_paths)
 
     def test_filter_projects(self):
         projects = list(map(Project, self.example_projects_paths))
