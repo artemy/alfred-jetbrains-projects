@@ -47,6 +47,11 @@
         "bundle_id": "com.jetbrains.rustrover",
         "uid": "3a187dcf-2949-427a-a9cb-96a90f329e71"
     },
+    "rider": {
+        "folder_name": "Rider",
+        "bundle_id": "com.jetbrains.rider",
+        "uid": "af0bcd2c-ac22-4d1d-8999-b7ff683f5280"
+    },
     "webstorm": {
         "folder_name": "WebStorm",
         "bundle_id": "com.jetbrains.webstorm",
