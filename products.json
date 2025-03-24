@@ -24,11 +24,14 @@
     "pycharm": {
         "folder-name": "PyCharm"
     },
-    "rustrover": {
-        "folder-name": "RustRover"
-    },
     "rider": {
         "folder-name": "Rider"
+    },
+    "rubymine": {
+        "folder-name": "RubyMine"
+    },
+    "rustrover": {
+        "folder-name": "RustRover"
     },
     "webstorm": {
         "folder-name": "WebStorm"
