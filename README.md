@@ -51,9 +51,9 @@ typing `map` will find `my-awesome-project`):
 | PhpStorm       | 2024.3+ | phpstorm      |
 | PyCharm        | 2020.3+ | pycharm       |
 | Rider          | 2024.3+ | rider         |
+| RubyMine       | 2024.3+ | rubymine      |
 | RustRover      | 2024.1+ | rustrover     |
 | WebStorm       | 2020.3+ | webstorm      |
-| RubyMine       | 2024.3+ | rubymine      |
 
 Support for older IDE versions is not guaranteed.
 

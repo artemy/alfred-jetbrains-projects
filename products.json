@@ -1,65 +1,65 @@
 {
-    "androidstudio": {
-        "display_name": "Android Studio",
-        "folder_name": "AndroidStudio",
-        "preferences_path": "~/Library/Application Support/Google/",
-        "bundle_id": "com.google.android.studio",
-        "uid": "92b0f147-c697-4f0b-b10a-10d823534408"
-    },
-    "appcode": {
-        "folder_name": "AppCode",
-        "bundle_id": "com.jetbrains.appcode",
-        "uid": "d813b1dd-ee4a-470f-8c4d-73a55248e1b5"
-    },
-    "clion": {
-        "folder_name": "CLion",
-        "bundle_id": "com.jetbrains.clion",
-        "uid": "51a5ab39-dad4-47da-90af-a59be0f3b960"
-    },
-    "datagrip": {
-        "folder_name": "DataGrip",
-        "bundle_id": "com.jetbrains.datagrip",
-        "uid": "cd332057-2b16-4243-bbdf-a7d63718cf44"
-    },
-    "goland": {
-        "folder_name": "GoLand",
-        "bundle_id": "com.jetbrains.goland",
-        "uid": "4d578e7e-c467-4e5c-9126-977f2226cf9e"
-    },
-    "idea": {
-        "display_name": "IntelliJ IDEA",
-        "folder_name": "IntelliJIdea",
-        "bundle_id": "com.jetbrains.intellij",
-        "uid": "24d32321-9a0e-4c25-a26b-009544cfbd8b"
-    },
-    "phpstorm": {
-        "folder_name": "PhpStorm",
-        "bundle_id": "com.jetbrains.phpstorm",
-        "uid": "9611a7b4-f91a-46f9-b2ef-aec592cbc366"
-    },
-    "pycharm": {
-        "folder_name": "PyCharm",
-        "bundle_id": "com.jetbrains.pycharm",
-        "uid": "ee83c053-d389-4de0-8227-f7b836fbec98"
-    },
-    "rustrover": {
-        "folder_name": "RustRover",
-        "bundle_id": "com.jetbrains.rustrover",
-        "uid": "3a187dcf-2949-427a-a9cb-96a90f329e71"
-    },
-    "rider": {
-        "folder_name": "Rider",
-        "bundle_id": "com.jetbrains.rider",
-        "uid": "af0bcd2c-ac22-4d1d-8999-b7ff683f5280"
-    },
-    "webstorm": {
-        "folder_name": "WebStorm",
-        "bundle_id": "com.jetbrains.webstorm",
-        "uid": "714d0708-2185-43e9-979f-92e09c09aca0"
-    },
-    "rubymine": {
-        "folder_name": "RubyMine",
-        "bundle_id": "com.jetbrains.rubymine",
-        "uid": "81dc0669-985c-48ea-a174-5485c1c2cf94"
-    }
+  "androidstudio": {
+    "display_name": "Android Studio",
+    "folder_name": "AndroidStudio",
+    "preferences_path": "~/Library/Application Support/Google/",
+    "bundle_id": "com.google.android.studio",
+    "uid": "92b0f147-c697-4f0b-b10a-10d823534408"
+  },
+  "appcode": {
+    "folder_name": "AppCode",
+    "bundle_id": "com.jetbrains.appcode",
+    "uid": "d813b1dd-ee4a-470f-8c4d-73a55248e1b5"
+  },
+  "clion": {
+    "folder_name": "CLion",
+    "bundle_id": "com.jetbrains.clion",
+    "uid": "51a5ab39-dad4-47da-90af-a59be0f3b960"
+  },
+  "datagrip": {
+    "folder_name": "DataGrip",
+    "bundle_id": "com.jetbrains.datagrip",
+    "uid": "cd332057-2b16-4243-bbdf-a7d63718cf44"
+  },
+  "goland": {
+    "folder_name": "GoLand",
+    "bundle_id": "com.jetbrains.goland",
+    "uid": "4d578e7e-c467-4e5c-9126-977f2226cf9e"
+  },
+  "idea": {
+    "display_name": "IntelliJ IDEA",
+    "folder_name": "IntelliJIdea",
+    "bundle_id": "com.jetbrains.intellij",
+    "uid": "24d32321-9a0e-4c25-a26b-009544cfbd8b"
+  },
+  "phpstorm": {
+    "folder_name": "PhpStorm",
+    "bundle_id": "com.jetbrains.phpstorm",
+    "uid": "9611a7b4-f91a-46f9-b2ef-aec592cbc366"
+  },
+  "pycharm": {
+    "folder_name": "PyCharm",
+    "bundle_id": "com.jetbrains.pycharm",
+    "uid": "ee83c053-d389-4de0-8227-f7b836fbec98"
+  },
+  "rider": {
+    "folder_name": "Rider",
+    "bundle_id": "com.jetbrains.rider",
+    "uid": "af0bcd2c-ac22-4d1d-8999-b7ff683f5280"
+  },
+  "rubymine": {
+    "folder_name": "RubyMine",
+    "bundle_id": "com.jetbrains.rubymine",
+    "uid": "81dc0669-985c-48ea-a174-5485c1c2cf94"
+  },
+  "rustrover": {
+    "folder_name": "RustRover",
+    "bundle_id": "com.jetbrains.rustrover",
+    "uid": "3a187dcf-2949-427a-a9cb-96a90f329e71"
+  },
+  "webstorm": {
+    "folder_name": "WebStorm",
+    "bundle_id": "com.jetbrains.webstorm",
+    "uid": "714d0708-2185-43e9-979f-92e09c09aca0"
+  }
 }
