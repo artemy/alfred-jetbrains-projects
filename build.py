@@ -11,6 +11,7 @@ APPS = [
     ['IntelliJ IDEA', 'idea', 'com.jetbrains.intellij'],
     ['PhpStorm', 'phpstorm', 'com.jetbrains.phpstorm'],
     ['PyCharm', 'pycharm', 'com.jetbrains.pycharm'],
+    ['PyCharm CE', 'pycharmce', 'com.jetbrains.pycharm.ce'],
     ['Rider', 'rider', 'com.jetbrains.rider'],
     ['RubyMine', 'rubymine', 'com.jetbrains.rubymine'],
     ['RustRover', 'rustrover', 'com.jetbrains.rustrover'],

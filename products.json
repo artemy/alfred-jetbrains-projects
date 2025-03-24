@@ -24,6 +24,9 @@
     "pycharm": {
         "folder-name": "PyCharm"
     },
+    "pycharmce": {
+        "folder-name": "PyCharmCE"
+    },
     "rider": {
         "folder-name": "Rider"
     },
