@@ -56,5 +56,10 @@
         "folder_name": "WebStorm",
         "bundle_id": "com.jetbrains.webstorm",
         "uid": "714d0708-2185-43e9-979f-92e09c09aca0"
+    },
+    "rubymine": {
+        "folder_name": "RubyMine",
+        "bundle_id": "com.jetbrains.rubymine",
+        "uid": "81dc0669-985c-48ea-a174-5485c1c2cf94"
     }
 }
