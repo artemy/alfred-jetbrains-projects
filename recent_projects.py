@@ -102,6 +102,15 @@ def find_preferences_folders(preferences_path, application):
 
 
 def should_ignore_folder(folder_name):
+    if folder_name == "PyCharm":
+        # also exclude PyCharmCE when PyCharm
+        # so you don't end up finding recent projects from PyCharmCE if you configured keyword for PyCharm
+        # also prevents the situation when you configured keyword for the wrong app but the workflow finds recent projects for the correct one
+        # leading to opening the project with an app you possibly haven't installed
+        return "backup" in folder_name or "PyCharmCE" in folder_name
+    if folder_name == "PyCharmCE":
+        # also exclude PyCharm when PyCharmCE
+        return "backup" in folder_name or ("PyCharm" in folder_name and "PyCharmCE" not in folder_name)
     return "backup" in folder_name
 
 
