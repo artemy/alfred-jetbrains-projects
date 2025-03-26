@@ -9,21 +9,22 @@ Alfred workflow for opening your JetBrains IDEs projects
 
 ## Supported IDEs
 
-| IDE Name                  | Version | Keyword       |
-|---------------------------|---------|---------------|
-| Android Studio            | 4.1+    | androidstudio |
-| AppCode                   | 2020.3+ | appcode       |
-| CLion                     | 2020.3+ | clion         |
-| DataGrip                  | 2020.3+ | datagrip      |
-| GoLand                    | 2020.3+ | goland        |
-| IntelliJ IDEA             | 2020.3+ | idea          |
-| PhpStorm                  | 2024.3+ | phpstorm      |
-| PyCharm Professional      | 2020.3+ | pycharm       |
-| PyCharm Community Edition | 2024.3+ | pycharmce     |
-| Rider                     | 2024.3+ | rider         |
-| RubyMine                  | 2024.3+ | rubymine      |
-| RustRover                 | 2024.1+ | rustrover     |
-| WebStorm                  | 2020.3+ | webstorm      |
+| IDE Name                        | Version | Keyword       |
+|---------------------------------|---------|---------------|
+| Android Studio                  | 4.1+    | androidstudio |
+| AppCode                         | 2020.3+ | appcode       |
+| CLion                           | 2020.3+ | clion         |
+| DataGrip                        | 2020.3+ | datagrip      |
+| GoLand                          | 2020.3+ | goland        |
+| IntelliJ IDEA Ultimate          | 2020.3+ | idea          |
+| IntelliJ IDEA Community Edition | 2024.3+ | ideace        |
+| PhpStorm                        | 2024.3+ | phpstorm      |
+| PyCharm Professional            | 2020.3+ | pycharm       |
+| PyCharm Community Edition       | 2024.3+ | pycharmce     |
+| Rider                           | 2024.3+ | rider         |
+| RubyMine                        | 2024.3+ | rubymine      |
+| RustRover                       | 2024.1+ | rustrover     |
+| WebStorm                        | 2020.3+ | webstorm      |
 
 Support for older IDE versions is not guaranteed.
 

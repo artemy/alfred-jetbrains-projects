@@ -9,6 +9,7 @@ APPS = [
     ['DataGrip', 'datagrip', 'com.jetbrains.datagrip'],
     ['GoLand', 'goland', 'com.jetbrains.goland'],
     ['IntelliJ IDEA', 'idea', 'com.jetbrains.intellij'],
+    ['IntelliJ IDEA CE', 'ideace', 'com.jetbrains.intellij.ce'],
     ['PhpStorm', 'phpstorm', 'com.jetbrains.phpstorm'],
     ['PyCharm', 'pycharm', 'com.jetbrains.pycharm'],
     ['PyCharm CE', 'pycharmce', 'com.jetbrains.pycharm.ce'],

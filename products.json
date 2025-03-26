@@ -18,6 +18,9 @@
     "idea": {
         "folder-name": "IntelliJIdea"
     },
+    "ideace": {
+        "folder-name": "IdeaIC"
+    },
     "phpstorm": {
         "folder-name": "PhpStorm"
     },
