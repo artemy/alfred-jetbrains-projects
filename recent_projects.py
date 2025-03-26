@@ -2,6 +2,7 @@
 
 import json
 import os
+import re
 import sys
 from xml.etree import ElementTree
 
@@ -97,12 +98,12 @@ def preferences_path_or_default(application):
 
 
 def find_preferences_folders(preferences_path, application):
-    return [folder_name for folder_name in next(os.walk(preferences_path))[1] if
-            application["folder_name"] in folder_name and not should_ignore_folder(folder_name)]
-
-
-def should_ignore_folder(folder_name):
-    return "backup" in folder_name
+    # Naming scheme seems to be %PRODUCT_NAME%%VERSION_NUMBER%, e.g. IntelliJIdea2024.1
+    # https://github.com/JetBrains/intellij-community/blob/master/platform/remoteDev-util/src/com/intellij/remoteDev/util/ProductPaths.kt#L21
+    # Make sure to ignore `-backup` postfix
+    folder_name_pattern = r"^%s\d*?\.\d(?!-backup)" % application["folder_name"]
+    return [folder_name for folder_name in next(os.walk(preferences_path))[1]
+            if re.match(folder_name_pattern, folder_name)]
 
 
 def read_projects_from_file(most_recent_projects_file, app_name):
