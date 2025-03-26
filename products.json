@@ -27,10 +27,16 @@
     "uid": "4d578e7e-c467-4e5c-9126-977f2226cf9e"
   },
   "idea": {
-    "display_name": "IntelliJ IDEA",
+    "display_name": "IntelliJ IDEA Ultimate",
     "folder_name": "IntelliJIdea",
     "bundle_id": "com.jetbrains.intellij",
     "uid": "24d32321-9a0e-4c25-a26b-009544cfbd8b"
+  },
+  "ideace": {
+    "display_name": "IntelliJ IDEA Community Edition",
+    "folder_name": "IdeaIC",
+    "bundle_id": "com.jetbrains.intellij.ce",
+    "uid": "d19d2af2-272d-46cc-836c-ae87d052de43"
   },
   "phpstorm": {
     "folder_name": "PhpStorm",
