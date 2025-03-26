@@ -38,12 +38,13 @@
     "uid": "9611a7b4-f91a-46f9-b2ef-aec592cbc366"
   },
   "pycharm": {
+    "display_name": "PyCharm Professional",
     "folder_name": "PyCharm",
     "bundle_id": "com.jetbrains.pycharm",
     "uid": "ee83c053-d389-4de0-8227-f7b836fbec98"
   },
   "pycharmce": {
-    "display_name": "PyCharm CE",
+    "display_name": "PyCharm Community Edition",
     "folder_name": "PyCharmCE",
     "bundle_id": "com.jetbrains.pycharm.ce",
     "uid": "a1f3b9c7-2e48-4d2e-9f6e-8c2b1d3e4a7f"
