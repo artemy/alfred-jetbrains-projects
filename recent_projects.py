@@ -33,6 +33,15 @@ def create_json(projects, bundle_id):
         AlfredOutput([AlfredItem(project.name, project.path, project.path) for project in projects], bundle_id))
 
 
+def match_partial(chars, string):
+    index = 0
+    for char in chars:
+        if char not in string[index:]:
+            return False
+        index = string.index(char, index) + 1
+    return True
+
+
 class Project:
     def __init__(self, path):
         self.path = path
@@ -63,7 +72,8 @@ class Project:
         return abbreviation
 
     def matches_query(self, query):
-        return query in self.path.lower() or query in self.abbreviation.lower() or query in self.name.lower()
+        chars = filter(lambda x: x.strip() != '', query)
+        return match_partial(chars, self.path.lower())
 
     def sort_on_match_type(self, query):
         if query == self.abbreviation:

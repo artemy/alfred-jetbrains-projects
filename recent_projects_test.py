@@ -2,7 +2,7 @@ import unittest
 from unittest import mock
 
 from recent_projects import create_json, Project, find_app_data, find_recentprojects_file, read_projects_from_file, \
-    filter_and_sort_projects
+    filter_and_sort_projects, match_partial
 
 
 class Unittests(unittest.TestCase):
@@ -157,6 +157,27 @@ class Unittests(unittest.TestCase):
         self.assertEqual(project.sort_on_match_type("sp"), 0)
         self.assertEqual(project.sort_on_match_type("spring-petclinic"), 1)
         self.assertEqual(project.sort_on_match_type("foobar"), 2)
+
+    def test_match_partial(self):
+        self.assertEqual(match_partial("y", "your-foo-bar"), True)
+        self.assertEqual(match_partial("yr", "your-foo-bar"), True)
+        self.assertEqual(match_partial("yrb", "your-foo-bar"), True)
+        self.assertEqual(match_partial("your-foo-bar", "your-foo-bar"), True)
+        self.assertEqual(match_partial("your-fb", "your-foo-bar"), True)
+        self.assertEqual(match_partial("", "your-foo-bar"), True)
+
+        self.assertEqual(match_partial("uyfb", "/home/username/your-foo-bar"), True)
+        self.assertEqual(match_partial("uyr", "/home/username/your-foo-bar"), True)
+        self.assertEqual(match_partial("uyrb", "/home/username/your-foo-bar"), True)
+        self.assertEqual(match_partial("uyour-foo-bar", "/home/username/your-foo-bar"), True)
+        self.assertEqual(match_partial("uyour-fb", "/home/username/your-foo-bar"), True)
+        self.assertEqual(match_partial("h/u/your-fb", "/home/username/your-foo-bar"), True)
+
+        self.assertEqual(match_partial("not-exist", "your-foo-bar"), False)
+        self.assertEqual(match_partial("yr0", "your-foo-bar"), False)
+        self.assertEqual(match_partial("ybf", "your-foo-bar"), False)
+        self.assertEqual(match_partial(" ", "your-foo-bar"), False)
+        self.assertEqual(match_partial("oooo", "ooo"), False)
 
 
 if __name__ == '__main__':  # pragma: nocover
